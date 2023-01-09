@@ -1,0 +1,143 @@
+---
+title: "Predictive Modelling for Loans"
+output: html_notebook
+---
+```{r}
+library('readxl')
+library('tidyverse')
+library('janitor')
+library('GGally')
+```
+
+```{r}
+library(readr)
+lending_club_loans <- read_csv("C:/Users/44792/OneDrive/Desktop/Codeclan 2022/final_project_loan_default_predictor/data/lending_club_loans.csv")
+View(lending_club_loans)
+```
+
+```{r}
+view(lending_club_loans)
+lending_club_loans <- clean_names(lending_club_loans)
+
+```
+```{r}
+loans1 <- lending_club_loans %>%
+  select(loan_amnt,term,int_rate,sub_grade,home_ownership,annual_inc,purpose, loan_status)
+```
+```{r}
+glimpse(loans1)
+```
+```{r}
+summary(loans1)
+```
+```{r}
+loans2 <- loans1 %>%
+  filter(!is.na(loan_amnt))
+loans2
+
+loans3 <- loans2 %>%
+  filter(!is.na(annual_inc))
+
+```
+
+#loan status needs to be turned into a numerical column 0 or 1.
+
+```{r}
+loans3 %>%
+  select(loan_status) %>%
+  mutate(loan_status = recode(loan_status,"Fully Paid" = "1", "Charged Off" = "0", "Current" = "3")
+  ) 
+```
+
+
+```{r}
+loans4 <-loans3 %>%
+  mutate(loan_status = recode(loan_status,"Fully Paid" = "1", "Charged Off" = "0", "Current" = "3")
+  ) 
+loans4
+```
+
+```{r}
+head(loans4, 15)
+```
+
+
+```{r}
+ggplot(loans4) +
+  geom_bar(aes(x= term), fill = "light blue")+
+labs( x= "Term of Loan",
+        y= "Number of Loans",
+        title = "Lending Club Loans Data")
+```
+
+
+```{r}
+ggplot(loans4) +
+  geom_bar(aes(x= loan_status), fill = "light blue")+
+labs( x= "Status of Loan",
+        y= "Number of Loans",
+        title = "Lending Club Loans Data")
+```
+
+```{r}
+ggplot(loans4) +
+  geom_bar(aes(x=home_ownership), fill = "light blue")+
+   labs( x= "Houseing Status",
+        y= "Number of Loans",
+        title = "Lending Club Loans Data")
+```
+
+
+```{r}
+ggplot(loans4) +
+  geom_bar(aes(x= term, fill = purpose))+
+  labs( x= "Term of Loan",
+        y= "Number of Loans",
+        title = "Lending Club Loans Data",
+        fill = "Purpose of Loan")
+```
+
+
+
+
+
+
+
+
+
+#Now let's have a look at the relationships with loan status. I will split the variables into three sets, as the output of `ggpairs()` will be slow and cramped if we include all variables at once. Note that a disadvantage of this approach is that it will be difficult to visually assess relationships between some predictor pairs if they fall into different split sets.
+
+
+```{r}
+loans_split1 <- loans4 %>%
+  select(loan_amnt, term,home_ownership, loan_status)
+```
+
+
+```{r}
+loans_split2 <- loans4 %>%
+  select(annual_inc, purpose,loan_status)
+```
+
+#Now develop the connection with ggpairs
+
+```{r}
+library(GGally)
+loans_split1 %>%
+  ggpairs()
+```
+
+```{r}
+library(GGally)
+loans_split2 %>%
+  ggpairs()
+```
+
+
+
+
+
+
+
+
+
