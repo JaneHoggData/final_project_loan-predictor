@@ -30,6 +30,8 @@ glimpse(loans1)
 ```{r}
 summary(loans1)
 ```
+
+
 ```{r}
 loans2 <- loans1 %>%
   filter(!is.na(loan_amnt))
@@ -39,6 +41,115 @@ loans3 <- loans2 %>%
   filter(!is.na(annual_inc))
 
 ```
+```{r}
+glimpse(loans3)
+```
+
+#Visual and explore the characteristics of the defaults loans only to uderstand more about the type of loan that is written off.
+
+```{r}
+default1 <-loans3 %>%
+  filter(loan_status == "Charged Off")
+  
+```
+```{r}
+glimpse(default1)
+```
+```{r}
+summary(default1)
+```
+
+```{r}
+default1 %>%
+  summarise(term, term_count = n())
+
+```
+XX not working at all
+
+
+```{r}
+default1 %>%
+  group_by(term, term_count = n())
+```
+
+
+```{r}
+default_arranged <- default1 %>%
+  select(loan_amnt, term)%>%
+  arrange(desc(loan_amnt))
+```
+
+```{r}
+ggplot(chick_weight) + 
+  aes(x = time, y = weight, colour = diet) +
+  geom_line(aes(group = chick), alpha = 0.25) +
+  geom_point(alpha = 0.5) +
+  geom_smooth()
+```
+
+
+```{r}
+ggplot(default1) +
+  geom_bar(aes(x= term), fill = "light blue")+
+labs( x= "Term of Loan",
+        y= "Number of Default Loans",
+        title = "Lending Club Default Loans Data")
+```
+# Loans with the longer term of 60 months make up a higher percentage of the defaults loans ?? - so we could conclude that the longer the term the higher the exposure to changes in a persons financial status.
+
+
+```{r}
+ggplot(default1) +
+  geom_bar(aes(x=home_ownership), fill = "light blue")+
+   labs( x= "Houseing Status",
+        y= "Number of Default Loans",
+        title = "Lending Club Loans Data",
+        subtitle = "Houseing Status")
+```
+#Default loans also have a higher percentage of renters - unsurprising and also might be considered a higher risk when lending
+
+
+```{r}
+ggplot(default1) +
+  geom_bar(aes(x= term, fill = purpose))+
+  labs( x= "Term of Default Loan",
+        y= "Number of Default Loans",
+        title = "Lending Club Default Loans Data",
+        subtitle = "Term & Purpose",
+        fill = "Purpose of Loan")
+```
+```{r}
+ggplot(default1) + 
+  aes(x = int_rate, y = term) +
+  geom_point(aes(colour = sub_grade, shape = purpose), size = 4) +
+  geom_text(
+    aes(label = purpose),
+    nudge_x = 0.5,
+    nudge_y = 0.1,)
+  
+```
+
+ggplot(pets) + 
+  aes(x = age, y = weight) +
+  geom_point(aes(colour = sex, shape = animal), size = 4) +
+  geom_text(
+    aes(label = name),
+    nudge_x = 0.5,
+    nudge_y = 0.1,)
+  
+
+```{r}
+ggplot(default1) +
+  geom_bar(aes(x= term, fill = annual_inc))+
+  labs( x= "Term of Default Loan",
+        y= "Number of Default Loans",
+        title = "Lending Club Default Loans Data",
+        subtitle = "Term & Purpose",
+        fill = "Purpose of Loan")
+```
+
+
+
 
 ```{r}
 loansstatusnew <- loans3 %>%
@@ -53,17 +164,22 @@ count(loansstatusnew)
 
 
 
+
+
+
 ```{r}
 ggplot(loansstatusnew) +
   geom_bar(aes(x= loan_status), fill = "light blue")+
+  coord_flip()+
 labs( x= "Status of Loan",
         y= "Number of Loans",
-        title = "Lending Club Loans Data")
+        title = "Lending Club Loans Data",
+        subtitle = "Status of Loan")
 ```
 
 
 
-#what are the characteristic of
+
 
 #loan status needs to be turned into a numerical column 0 or 1 for purpose of building a predictive model.
 
@@ -99,6 +215,7 @@ labs( x= "Term of Loan",
 ```{r}
 ggplot(loans4) +
   geom_bar(aes(x= loan_status), fill = "light blue")+
+  coord_flip()+
 labs( x= "Status of Loan",
         y= "Number of Loans",
         title = "Lending Club Loans Data")
@@ -109,7 +226,8 @@ ggplot(loans4) +
   geom_bar(aes(x=home_ownership), fill = "light blue")+
    labs( x= "Houseing Status",
         y= "Number of Loans",
-        title = "Lending Club Loans Data")
+        title = "Lending Club Loans Data",
+        subtitle = "Houseing Status")
 ```
 
 
@@ -119,14 +237,15 @@ ggplot(loans4) +
   labs( x= "Term of Loan",
         y= "Number of Loans",
         title = "Lending Club Loans Data",
+        subtitle = "Term & Purpose",
         fill = "Purpose of Loan")
 ```
+#More debt consolidation - so we could consdier that an application for such a matter could have a higher risk that for medical bills or buying a car.
 
 
 
 
-
-
+#Machine Model
 
 
 
