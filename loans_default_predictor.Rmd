@@ -40,7 +40,32 @@ loans3 <- loans2 %>%
 
 ```
 
-#loan status needs to be turned into a numerical column 0 or 1.
+```{r}
+loansstatusnew <- loans3 %>%
+  group_by(loan_status)
+count(loansstatusnew)
+```
+#Total of 42,531 individual loan accounts with 5653 charged off (meaning that the lender has written off the debt and the account is closed) 
+#(13% of the total loans made)
+
+#Total of 33,586 fully paid (79% of the total loans)
+#From the data set there are some records that are unclear catergories
+
+
+
+```{r}
+ggplot(loansstatusnew) +
+  geom_bar(aes(x= loan_status), fill = "light blue")+
+labs( x= "Status of Loan",
+        y= "Number of Loans",
+        title = "Lending Club Loans Data")
+```
+
+
+
+#what are the characteristic of
+
+#loan status needs to be turned into a numerical column 0 or 1 for purpose of building a predictive model.
 
 ```{r}
 loans3 %>%
