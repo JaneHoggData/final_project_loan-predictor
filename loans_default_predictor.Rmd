@@ -67,16 +67,18 @@ loans3 <- loans2 %>%
 ```{r}
 summary(as.factor(loans2$term))
 ```
-#Majority of the loans are for 36 months (74%) and 26% and for 60months.
+#Majority of the loans are for 36 months (74%) and 26% and for 60 months.
 
 ```{r}
 summary(as.factor(loans2$sub_grade))
 ```
-#LC grade the loans A1 to G5 with A being the least likely to default.
+#LC grade the loans A1 to G5 with A being the least likely to default and G5 the catergory with the highest risk profile.
+
 ```{r}
 summary(as.factor(loans2$purpose))
 ```
-#Debt consolidation (19,776 loans) followed by paying off credit card debt (5477) are the top two purposes of the loan request.
+#Debt consolidation (19,776 loans) 46% of loans followed by paying off credit card debt (5,477) 13% and then other (4425) 10% are the top three purposes of the loan request. It should be noted that this is self reported by the applicant and caution should be exercised when considering the validity of this informations.
+
 ```{r}
 summary(as.factor(loans2$loan_status))
 ```
@@ -85,14 +87,11 @@ summary(as.factor(loans2$loan_status))
 ```{r}
 glimpse(loans3)
 ```
-
+#Further cleaning of the data here at this point to 
 
 ## Explority analysis
-##Before building a model i think it is important to consider the characteristics of what is a fully paid loan and a loan that has been defaulted on.
 
-```{r}
-
-```
+##Before building a model i think it is important to consider the key characteristics of a loan that has been defaulted on so that we are in a stronger position to understand what are the strong predictors of a  loan defaulting.
 
 
 #Visual and explore the characteristics of the defaults loans only to uderstand more about the type of loan that is written off.
@@ -100,21 +99,16 @@ glimpse(loans3)
 ```{r}
 default1 <-loans3 %>%
   filter(loan_status == "Charged Off")
-  
 ```
+
+
 ```{r}
 glimpse(default1)
 ```
 ```{r}
 summary(default1)
 ```
-
-```{r}
-default1 %>%
-  summarise(term, term_count = n())
-
-```
-XX not working at all
+#Average value of the defaulted loan is $12,134
 
 
 ```{r}
@@ -132,7 +126,7 @@ default_arranged <- default1 %>%
 ```{r}
 summary(default_arranged)
 ```
-#Data set for default loans is 5653 and on average the default is $12,134 - across a total of 5653 accounts this could be a value of $68,593,502 so any reduction in theloses will be helpful.
+#Data set for default loans is 5,653 and on average the default is $12,134 - across the business and the timeline of the data this could be a value of $68,593,502 so any reduction in the number of defaulting loans by 1% would be $68,000 additional revenue.
 
 
 ```{r}
@@ -144,14 +138,6 @@ labs( x= "Term of Loan",
 ```
 
 
-
-```{r}
-ggplot(default1) +
-  geom_bar(aes(x= term), fill = "light blue")+
-labs( x= "Term of Loan",
-        y= "Number of Default Loans",
-        title = "Lending Club Default Loans Data")
-```
 # Loans with the longer term of 60 months make up a higher percentage of the defaults loans ?? - so we could conclude that the longer the term the higher the exposure to changes in a persons financial status.
 
 
@@ -163,7 +149,7 @@ ggplot(default1) +
         title = "Lending Club Loans Data",
         subtitle = "Houseing Status")
 ```
-#Default loans also have a higher percentage of renters - unsurprising and also might be considered a higher risk when lending
+#Default loans also have a higher percentage of renters - unsurprising and also might be considered a higher risk when lending as a credit check cannot be secured from the other lender.
 
 
 ```{r}
@@ -175,6 +161,9 @@ ggplot(default1) +
         subtitle = "Term & Purpose",
         fill = "Purpose of Loan")
 ```
+#Debt consolidation, payment of credit card debts and "other" continue to be the top three reasons for a loan and defaults.  Limiting exposure to the loans being used for this purpose may be a consideration in the future.
+
+
 ```{r}
 ggplot(default1) + 
   aes(x = int_rate, y = term) +
@@ -186,13 +175,13 @@ ggplot(default1) +
   
 ```
 ```{r}
-ggplot(default1) + 
-  aes(x = int_rate, y = term) +
-  geom_point(aes(colour = annual_inc, shape = home_ownership), size = 4) +
-  geom_text(
-    aes(label = purpose),
-    nudge_x = 0.5,
-    nudge_y = 0.1,)
+ggplot(default1) +
+  geom_bar(aes(x= int_rate, fill = term))+
+  labs( x= "Interest Rate",
+        y= "Number of Default Loans",
+        title = "Lending Club Default Loans Data",
+        subtitle = "Term & Purpose",
+        fill = "Term")
 ```
 XX rubbish plot - may chuck
 
@@ -218,8 +207,8 @@ loansstatusnew <- loans3 %>%
   group_by(loan_status)
 count(loansstatusnew)
 ```
-#Total of 42,531 individual loan accounts with 5653 charged off (meaning that the lender has written off the debt and the account is closed) 
-#(13% of the total loans made)
+#Total of 42,531 individual loan accounts with 5,653 charged off (meaning that the lender has written off the debt and the account is closed) 
+#(13% of the total loans made) - so a reduction in the defualts of 1% (is across this data the average losses were $68m - this )
 
 #Total of 33,586 fully paid (79% of the total loans)
 #From the data set there are some records that are unclear catergories
@@ -245,12 +234,7 @@ labs( x= "Status of Loan",
 
 #loan status needs to be turned into a numerical column 0 or 1 for purpose of building a predictive model.
 
-```{r}
-loans3 %>%
-  select(loan_status) %>%
-  mutate(loan_status = recode(loan_status,"Fully Paid" = "1", "Charged Off" = "0",)
-  ) 
-```
+
 
 
 
@@ -260,6 +244,20 @@ loans4 <-loans3 %>%
 loans4
 ```
 
+
+```{r}
+loans4 <-loans3 %>%
+  mutate(loan_status = recode(loan_status,"Fully Paid" = "1", "Charged Off" = "0"))
+filter(loans)
+loans4
+```
+
+
+
+
+loans4 <-loans3 %>%
+  mutate(loan_status = recode(loan_status,"Fully Paid" = "1", "Charged Off" = "0")) 
+loans4
 ```{r}
 glimpse(loans4)
 ```
