@@ -1,5 +1,5 @@
 ---
-title: "Predictive Modelling for Loans"
+title: "Predictive Modelling - Identifying Factors that Influence Customers Defaulting on Loans"
 output: html_notebook
 ---
 ```{r}
@@ -21,24 +21,25 @@ library(readr)
 lending_club_loans <- read_csv("C:/Users/44792/OneDrive/Desktop/Codeclan 2022/final_project_loan_default_predictor/data/lending_club_loans.csv")
 View(lending_club_loans)
 ```
-## Background
+#   Background
 
-#Lending Club was established in 2007 and there are now over 4 million members. It is a #peer-to-peer lender (P2P) and the first in the USA to register its offering as #securities with SEC (Securities and Exchange Commission).
+####  Lending Club (LC) was established in 2007 and there are now over 4 million members. It is a peer-to-peer lender (P2P) and the first in the USA to register its offering as securities with SEC (Securities and Exchange Commission).  LC intersects technology and finance and with this approach there is the possibility of progressing a more effective business model and using machine learning to develop a risk management model that can eliminate lending bias.
 
-#Lending Club intersects technology and finance and with this approach there is the #possibility of progress a more effective business model and using machine learning to #develop a risk management model that can eliminate lending bias.
-# This data and the subsequent model is a good example of how DDD (Data Driven Decisions) #can be used to ensure there is a more transparent approach to accessing personal finance.
-#Data set is from Kaggle and is collected from 2007-2018 accepted applications.
-
-# Ethical consideration in the development of Machine Learning Models
-
-#When gathering personal data consumer data protection legislation needs to be considered, respected and the legislation followed.
-#Secondly, when considering the use of machine learning it is important to be transparent #about the use of machine learning during the decision-making process- as noted in annual #reports from LC marketing materials are clear that the company use over 150million cells #of data to support the use of artificial intelligence-driven credit decisions and #machine learning models are being used across the customer lifecycle to potentially expand access to credit.
-#Diversity and inclusion in the development of a model is also important as bias can be #introduced if the machine learning models are limited by the data that is gets to train #on.  Developing a team with a wide range of experience and from a diverse range of #backgrounds is important to support this.
-
-#I would recommend that further work be done on some of the new test models “What If” by Google so that the models can be challenged using a number of other data inputs.
+####  This data and the subsequent model is a good example of how DDD (Data Driven Decisions) can be used to ensure there is a more transparent approach to accessing personal finance.  The data set is from Kaggle and is collected from 2007-2018 accepted applications.
 
 
-##Data Preparation and Cleaning
+#   Ethical consideration in the development of Machine Learning Models
+
+#### When gathering personal data consumer data protection legislation needs to be considered, respected and the legislation followed.
+
+#### Secondly, when considering the use of machine learning it is important to be transparent with customer and investors about the use of machine learning during the decision-making process. As noted in annual reports from LC marketing materials are clear that the company use over 150million cells of data to support the use of artificial intelligence-driven credit decisions and machine learning models are being used across the customer lifecycle to potentially expand access to credit.
+
+#### Diversity and inclusion in the development of a model is also important as bias can be introduced if the machine learning models are limited by the data that is gets to train on.  Developing a team with a wide range of experience and from a diverse range of backgrounds is important to support this.  Inparticular from people with lived experience of some of the challenges of limited access to credit due to personal or work situations.
+
+#### I would recommend that further work be done on some of the new test models “What If” by Google so that the models can be challenged using a number of other data inputs.
+
+
+#   Data Preparation and Cleaning
 ```{r}
 view(lending_club_loans)
 lending_club_loans <- clean_names(lending_club_loans)
@@ -50,7 +51,7 @@ loans1 <- lending_club_loans %>%
 ```
 
 
-#View the structure of the data
+#  View the structure of the data
 ```{r}
 glimpse(loans1)
 ```
@@ -74,17 +75,12 @@ loans3 <- loans2 %>%
 
 ```
 
-
 ```{r}
 summary(as.factor(loans2$term))
 ```
-#Majority of the loans are for 36 months (74%) and 26% and for 60 months.
-
 ```{r}
 summary(as.factor(loans2$sub_grade))
 ```
-# The Lending Club internal credit rating ranges from A to G with 5 subcategories (a total of 35 credit ratings). A1 being the least likely to default and G5 the catergory with the highest risk profile
-
 
 ```{r}
 summary(as.factor(loans2$dti))
@@ -93,9 +89,7 @@ summary(as.factor(loans2$dti))
 ```{r}
 summary(as.factor(loans2$purpose))
 ```
-#Debt consolidation (19,776 loans) 46% of loans followed by paying off credit card debt (5,477) 13% and then other (4425) 10% are the top three purposes of the loan request. It should be noted that this is self reported by the applicant and caution should be exercised when considering the validity of this informations.
 
-#While debt consolidation could arise from various other sources, such as auto or home equity lines, loans from these sources are secured and, hence, considerably different than unsecured credit like LC
 
 ```{r}
 summary(as.factor(loans2$loan_status))
@@ -115,14 +109,23 @@ loansdropped %>%
   count(loan_status)
 ```
 
+#  Key Take Aways
 
-## Explority analysis
+#### Majority of the loans are for 36 months (74%) and (26%) and for 60 months.
 
-##Before building a model i think it is important to consider the key characteristics of a loan that has been defaulted on so that we are in a stronger position to understand what are the strong predictors of aloan defaulting.
+#### The LC internal credit rating ranges from A to G with 5 subcategories (a total of 35 credit ratings). A1 being the least likely to default and G5 the catergory with the highest risk profile
+
+#### Debt consolidation (19,776 loans) 46% of loans followed by paying off credit card debt (5,477) 13% and then other (4425) 10% are the top three purposes of the loan request. It should be noted that this is self reported and caution should be exercised when considering the validity of this information.
+
+#### While debt consolidation could arise from various other sources, such as auto or home equity lines, loans from these sources are secured and, hence, considerably different than unsecured credit like LC
 
 
-#Visual and explore the characteristics of the defaults loans only to uderstand more about the type of loan that is written off.
+# Exploriarity analysis
 
+#### Before building a model i think it is important to consider the key characteristics of a loan that has been defaulted on so that we are in a stronger position to understand what are the strong predictors of a loan defaulting.  I have undertaken further industry reading to inform this work.  A list of sources is at the end of the Markdown.
+
+
+#### Visual and explore the characteristics of the defaults loans only to uderstand more about the type of loan that is written off.
 
 
 
@@ -138,11 +141,19 @@ glimpse(default1)
 ```{r}
 summary(default1)
 ```
-#Average value of the defaulted loan is $12,134
+
 
 ```{r}
 default1 %>%
   group_by(term, term_count = n())
+```
+
+```{r}
+defaulthome <-default1 %>% 
+  group_by(home_ownership) %>%
+  summarise(n = n ())
+view(defaulthome)
+summarise(defaulthome)
 ```
 
 
@@ -155,12 +166,12 @@ default_arranged <- default1 %>%
 ```{r}
 summary(default_arranged)
 ```
-#Data set for default loans is 5,653 and on average the default amount is $12,134 - across the business and the timeline of the data this could be a value of $68,593,502 so any reduction in the number of defaulting loans by 1% would be $68,000 additional revenue.
-##Total of 42,531 individual loan accounts with 5,653 charged off (meaning that the lender has written off the debt and the account is closed) 
-#(13% of the total loans made) - so a reduction in the defualts of 1% (is across this data the average losses were $68m - this )
+### Total of 42,531 individual loan accounts with 5,653 charged off (meaning that the lender has written off the debt and the account is closed) 
 
-#Total of 33,586 fully paid (79% of the total loans)
-#From the data set there are some records that are unclear catergories
+### Data set for default loans is 5,653 and on average the default amount is $12,134 - across the business this could be an estimated value of $68,593,502 so any reduction in the number of defaulting loans by say 1% could be $68,000 additional revenue.
+
+###(13% of the total loans made) - so a reduction in the defualts of even 1% (is across this data the average losses were $68m - this )
+
 
 ```{r}
 ggplot(default1) +
@@ -169,7 +180,10 @@ labs( x= "Term of Loan",
         y= "Number of Default Loans",
         title = "Lending Club Default Loans Data")
 ```
-# Loans with the longer term of 60 months make up a higher percentage of the defaults loans - so we could conclude that the longer the  term the higher the exposure to changes in a persons financial status e.g employment. The loan term could be considered a factor in the probability of a customer defaulting.
+
+#### Loans with a longer term of 60 months make up a higher percentage of the defaults loans - we could conclude that the longer theterm the higher the exposure to changes in a persons financial status e.g employment or other personal circumstances. Historically, only the most financially secure individuals would be eligiable for a longer term loan.
+
+#### For the purpose of this work the loan term could be considered a factor in the probability of a customer defaulting.
 
 ```{r}
 ggplot(default1) +
@@ -179,7 +193,7 @@ labs( x= "Loan Amount",
         y= "Number of Default Loans",
         title = "Lending Club Default Loans Data")
 ```
-#Here you can see four spikes in the data where there are more defaults on certain values of loans - $7,000, $18,000, $25,000 and then the max of $35,000 - the loan size could be considered a factor in the probabilty of a customer defaulting.
+#### Here you can see four spikes in the data where there are more defaults on certain values of loans - $7,000, $18,000, $25,000 and then the max of $35,000 - the loan size could be considered a factor in the probabilty of a customer defaulting.
 
 
 
@@ -191,7 +205,9 @@ ggplot(default1) +
         title = "Lending Club Loans Data",
         subtitle = "Houseing Status")
 ```
-#Default loans also have a higher percentage of renters - unsurprising and also might be considered a higher risk when lending as a credit check cannot be secured from the other lender. Furthermore those with a mortage may be in a position to get a loans that are secured against their property. Housing status could be considered a factor in the probability of a customer defaulting.
+#### An applicants housing status can also be considerd a factor in Default loans also have a higher percentage of renters - unsurprising and also might be considered a higher risk when lending as a credit check cannot be secured from the other lender. Furthermore those with a mortage may be in a position to get a loans that are secured against their property. Housing status could be considered a factor in the probability of a customer defaulting.
+
+#### There is a slight increase in the number of people defaulting who are renters with 50% renting and 41% having a mortage.  For the purpose of the model home status could be consider a factor in the probabilty of a customer defaulting.
 
 
 ```{r}
@@ -203,9 +219,9 @@ ggplot(default1) +
         subtitle = "Term & Purpose",
         fill = "Purpose of Loan")
 ```
-#Debt consolidation, payment of credit card debts and "other" continue to be the top three reasons for a loan and default.  The purpose of a loan could be considered a factor in the chance of a customer defaulting.
+#### Debt consolidation, payment of credit card debts and "other" continue to be the top three reasons for a loan and for a customer then defaulting.  The purpose of a loan could be considered a factor in the chance of a customer defaulting and debt consolidation being a higher risk factor than for education or home improvements.
 
-#Limiting exposure to the loans being used for this purpose may be a consideration in the future.
+#### Limiting exposure to the loans being used for this purpose may be a consideration in the future.
 
 
 
