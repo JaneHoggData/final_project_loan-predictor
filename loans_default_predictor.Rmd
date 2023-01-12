@@ -332,16 +332,13 @@ score_plot3
 loan_data_logreg_model <- glm(loan_status ~ dti+ loan_amnt+ term +log(annual_inc), data = loansmodelling, family = binomial(link = 'logit'))
 loan_data_logreg_model
 ```
+#higher the dti more likely to default, higher the term etc - all good predictors of the higher chance of defaulting.
 
 
 
 
 
 
-```{r}
-tibble(dti = 28) %>%
-  add_predictions(loan_data_logreg_model, type='response') 
-```
 
 
-t
+
