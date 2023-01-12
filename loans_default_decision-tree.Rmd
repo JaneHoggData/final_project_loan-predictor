@@ -53,6 +53,47 @@ loansdropped %>%
 ```
 ```{r}
 loansdropped %>%
+  select(loan_status, purpose)%>%
+  group_by(loan_status, purpose)%>%
+  summarise(total_count = n())%>%
+ggplot(aes(x = loan_status, y = total_count, fill = purpose)) + 
+  geom_bar(stat = "identity", position = "dodge") + 
+  scale_fill_brewer(palette="Dark2") + 
+  ylab("Total count") + xlab("Loan Status")
+  
+
+
+
+
+```
+
+
+```{r}
+loansdropped %>%
+  select(loan_status, term)%>%
+  group_by(loan_status, term)%>%
+  summarise(total_count = n())%>%
+ggplot(aes(x = loan_status, y = total_count, fill = term)) + 
+  geom_bar(stat = "identity", position = "dodge") + 
+  scale_fill_brewer(palette="Dark2") + 
+  ylab("Total count") + xlab("Loan Status")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+loansdropped %>%
   select(loan_status, home_ownership)%>%
   group_by(loan_status, home_ownership)%>%
   summarise(total_count = n())%>%
@@ -60,10 +101,13 @@ ggplot(aes(x = loan_status, y = total_count, fill = home_ownership)) +
   geom_bar(stat = "identity", position = "dodge") + 
   scale_fill_brewer(palette="Dark2") + 
   ylab("Total count") + xlab("Loan Status")
-
-
-
 ```
+
+
+
+
+
+
 
 
 ```{r}
@@ -176,7 +220,7 @@ loan_test %>%
 ```{r}
 loan_fit <- rpart(formula = loan_status ~ ., 
                      data = loan_train, 
-                     method = 'home ownership')
+                     method = 'dti')
 
 rpart.plot(loan_fit,
            yesno = 2,
@@ -185,6 +229,12 @@ rpart.plot(loan_fit,
            digits = 4)
 ```
 
+```{r}
+rf_classifier <- ranger(loan_status ~.,
+                        data - loan_train,
+                        importance = "dti",
+                        num.trees = 1000,
+```
 
 
 
