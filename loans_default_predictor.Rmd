@@ -224,6 +224,16 @@ ggplot(default1) +
 #### Limiting exposure to the loans being used for this purpose may be a consideration in the future.
 
 
+```{r}
+defaultrate <-default1 %>% 
+  group_by(int_rate) %>%
+view(defaultrate)
+count(defaultrate)
+```
+
+
+
+
 
 ```{r}
 ggplot(default1) +
@@ -280,12 +290,13 @@ head(loansmodelling, 15)
 
 
 
-#Machine Model ~ 1 Logistic Regression
-#Predictive analysis using a machine learning model is an effective way of considering the relationships between variable that may impact on a customer defaulting.
+#   Machine Model ~ 1 Logistic Regression
 
-#Now let's have a look at the relationships with loan status. I will split the variables into three sets, as the output of `ggpairs()` will be slow and cramped if we include all variables at once. Note that a disadvantage of this approach is that it will be difficult to visually assess relationships between some predictor pairs if they fall into different split sets.
+#### Predictive analysis using a machine learning model is an effective way of considering the relationships between a variable that may impact on a customer defaulting.
 
-#My ultimate goal is the prediction of loan defaults from a given set of observations by selecting explanatory (independent) variables (also called feature in machine learning) that result in an acceptable model performance. This goal will also impact our exploratory data analysis. 
+#### Now let's have a look at the relationships with loan status. I will split the variables into three sets, as the output of `ggpairs()` will be slow and cramped if we include all variables at once. Note that a disadvantage of this approach is that it will be difficult to visually assess relationships between some predictor pairs if they fall into different split sets.
+
+#### My ultimate goal is the prediction of loan defaults from a given set of observations by selecting explanatory (independent) variables (also called features in machine learning) that result in an acceptable model performance. This goal will also impact our exploratory data analysis. 
 
 
 
@@ -349,6 +360,15 @@ loan_data_logreg_model <- glm(loan_status ~ dti+ loan_amnt+ term +log(annual_inc
 loan_data_logreg_model
 ```
 #higher the dti more likely to default, higher the term etc - all good predictors of the higher chance of defaulting.
+
+
+
+
+
+
+
+
+
 
 
 

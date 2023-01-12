@@ -1,0 +1,129 @@
+---
+title: "Predictive Modelling - Identifying Factors that Influence Customers Defaulting on Loans"
+output: html_notebook
+---
+
+```{r}
+
+library('readxl')
+library('tidyverse')
+library('janitor')
+library('GGally')
+library('fastDummies')
+library('ggfortify')
+library('mosaic')
+library('mosaicData')
+library('modelr')
+library('readxl')
+library("splitstackshape")
+```
+```{r}
+library(readr)
+lending_club_loans <- read_csv("C:/Users/44792/OneDrive/Desktop/Codeclan 2022/final_project_loan_default_predictor/data/lending_club_loans.csv")
+View(lending_club_loans)
+```
+```{r}
+view(lending_club_loans)
+lending_club_loans <- clean_names(lending_club_loans)
+
+```
+
+```{r}
+loans1 <- lending_club_loans %>%
+  select(loan_amnt,term,int_rate,sub_grade,home_ownership,annual_inc,purpose, loan_status,dti)
+```
+```{r}
+loans2 <- loans1 %>%
+  filter(!is.na(loan_amnt))
+loans2
+
+loans3 <- loans2 %>%
+  filter(!is.na(annual_inc))
+```
+
+```{r}
+loansdropped <-loans3 %>%
+  filter(loan_status %in% c("Charged Off","Fully Paid"
+                    ))
+loansdropped %>%
+  count(loan_status)
+```
+```{r}
+loansdropped %>%
+  select(loan_status, home_ownership)%>%
+  group_by(loan_status, home_ownership)%>%
+  summarise(total_count = n())%>%
+ggplot(aes(x = loan_status, y = total_count, fill = home_ownership)) + 
+  geom_bar(stat = "identity", position = "dodge") + 
+  scale_fill_brewer(palette="Dark2") + 
+  ylab("Total count") + xlab("Loan Status")
+
+
+
+```
+
+
+
+
+
+#   Machine Model ~ 2 Decision Tree
+
+
+
+```{r}
+
+set.rseed(19)
+n_data <- nrow(loansdropped)
+test_index <- sample(1:n_data, size = n_data*0.2)
+loan_test  <- slice(loansdropped, test_index)
+loan_train <- slice(loansdropped, -test_index)
+```
+```{r}
+loan_test %>%
+ janitor::tabyl(loan_status)
+```
+
+```{r}
+loan_train %>%
+ janitor::tabyl(loan_status)
+```
+
+
+```{r}
+library("splitstackshape")
+
+sets <- stratified(loansdropped, group = c("loan_status", "loan_amnt", "term", "dti"), bothSets = TRUE, size = 0.2)
+
+loan_test <- sets$SAMP1
+loan_train <- sets$SAMP2
+
+nrow(loan_test)
+```
+```{r}
+nrow(loan_train)
+```
+```{r}
+loan_test %>%
+  janitor::tabyl(loan_status)
+```
+
+```{r}
+loan_train %>%
+  janitor::tabyl(loan_status)
+```
+
+```{r}
+loan_test %>%
+  janitor::tabyl(loan_status, dti) %>%
+  janitor::adorn_percentages()
+```
+
+
+```{r}
+loan_test %>%
+  janitor::tabyl(loan_status, home_ownership) %>%
+  janitor::adorn_percentages()
+```
+
+
+
