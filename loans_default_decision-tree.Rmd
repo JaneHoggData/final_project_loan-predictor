@@ -16,7 +16,10 @@ library('mosaicData')
 library('modelr')
 library('readxl')
 library("splitstackshape")
+library("rpart")
 ```
+
+
 ```{r}
 library(readr)
 lending_club_loans <- read_csv("C:/Users/44792/OneDrive/Desktop/Codeclan 2022/final_project_loan_default_predictor/data/lending_club_loans.csv")
@@ -63,6 +66,31 @@ ggplot(aes(x = loan_status, y = total_count, fill = home_ownership)) +
 ```
 
 
+```{r}
+loansmodelling <-loansdropped %>%
+  mutate(loan_status = recode(loan_status,"Fully Paid" = FALSE, "Charged Off" = TRUE)) 
+loansmodelling
+```
+
+#furtherwork on factoring the data
+
+```{r}
+loansmodelling2 <- loansmodelling %>%
+filter(loan_status %in% c(0,1))%>%
+  mutate(home_ownership = as.factor(home_ownership),
+         dti = as.factor (dti),
+         term = factor(term, levels = c(0.1), labels = c("36 months", "60 months")),
+         select(home_ownership, term, dti, loan_status))%>%
+  na.omit()
+```
+
+
+
+
+
+
+
+
 
 
 
@@ -73,7 +101,7 @@ ggplot(aes(x = loan_status, y = total_count, fill = home_ownership)) +
 ```{r}
 
 set.rseed(19)
-n_data <- nrow(loansdropped)
+n_data <- nrow(loansmodelling)
 test_index <- sample(1:n_data, size = n_data*0.2)
 loan_test  <- slice(loansdropped, test_index)
 loan_train <- slice(loansdropped, -test_index)
@@ -92,7 +120,7 @@ loan_train %>%
 ```{r}
 library("splitstackshape")
 
-sets <- stratified(loansdropped, group = c("loan_status", "loan_amnt", "term", "dti"), bothSets = TRUE, size = 0.2)
+sets <- stratified(loansmodelling, group = c("loan_status", "loan_amnt", "term", "dti"), bothSets = TRUE, size = 0.2)
 
 loan_test <- sets$SAMP1
 loan_train <- sets$SAMP2
@@ -124,6 +152,48 @@ loan_test %>%
   janitor::tabyl(loan_status, home_ownership) %>%
   janitor::adorn_percentages()
 ```
+
+```{r}
+loan_test %>%
+  janitor::tabyl(loan_status, loan_amnt) %>%
+  janitor::adorn_percentages()
+```
+
+
+```{r}
+loan_test %>%
+  janitor::tabyl(loan_status, term) %>%
+  janitor::adorn_percentages()
+```
+
+```{r}
+loan_test %>%
+  janitor::tabyl(loan_status, annual_inc) %>%
+  janitor::adorn_percentages()
+```
+
+
+```{r}
+loan_fit <- rpart(formula = loan_status ~ ., 
+                     data = loan_train, 
+                     method = 'home ownership')
+
+rpart.plot(loan_fit,
+           yesno = 2,
+           fallen.leaves = TRUE,
+           faclen = 6,
+           digits = 4)
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
