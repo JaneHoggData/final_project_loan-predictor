@@ -80,14 +80,30 @@ ggplot(aes(x = loan_status, y = total_count, fill = term)) +
   ylab("Total count") + xlab("Loan Status")
 ```
 
+```{r}
+loansdropped %>%
+  select(loan_status, home_ownership)%>%
+  group_by(loan_status, home_ownership)%>%
+  summarise(total_count = n())%>%
+ggplot(aes(x = loan_status, y = total_count, fill = home_ownership)) + 
+  geom_bar(stat = "identity", position = "dodge") + 
+  scale_fill_brewer(palette="Dark2") + 
+  ylab("Total count") + xlab("Loan Status")
+```
 
 
+```{r}
+loans_plot <-loansdropped %>%
+  select(loan_status, loan_amnt)%>%
+group_by(loan_status, loan_amnt)%>%
+  summarise(total_count = n ())
 
-
-
-
-
-
+ggplot(loans_plot) + 
+  aes(x = loan_status, y = total_count, colour = loan_amnt) +
+  geom_line(aes(group = loan_status), alpha = 0.25) +
+  geom_point(alpha = 0.5) +
+  geom_smooth()
+```
 
 
 
@@ -134,28 +150,24 @@ filter(loan_status %in% c(0,1))%>%
 
 
 ```{r}
-
 set.rseed(19)
 n_data <- nrow(loansmodelling)
 test_index <- sample(1:n_data, size = n_data*0.2)
 loan_test  <- slice(loansdropped, test_index)
 loan_train <- slice(loansdropped, -test_index)
 ```
+
 ```{r}
 loan_test %>%
  janitor::tabyl(loan_status)
 ```
 
-```{r}
-loan_train %>%
- janitor::tabyl(loan_status)
-```
 
 
 ```{r}
 library("splitstackshape")
 
-sets <- stratified(loansmodelling, group = c("loan_status", "loan_amnt", "term"), bothSets = TRUE, size = 0.2)
+sets <- stratified(loansmodelling, group = c("loan_status", "loan_amnt", "term", "home_ownership"), bothSets = TRUE, size = 0.2)
 
 loan_test <- sets$SAMP1
 loan_train <- sets$SAMP2
@@ -177,13 +189,13 @@ loan_train %>%
 
 ```{r}
 loan_test %>%
-  janitor::tabyl(loan_status, dti) %>%
+  janitor::tabyl(loan_status, home_ownership) %>%
   janitor::adorn_percentages()
 ```
 
 
 ```{r}
-loan_test %>%
+loan_train %>%
   janitor::tabyl(loan_status, home_ownership) %>%
   janitor::adorn_percentages()
 ```
@@ -196,8 +208,8 @@ loan_test %>%
 
 
 ```{r}
-loan_test %>%
-  janitor::tabyl(loan_status, term) %>%
+loan_train %>%
+  janitor::tabyl(loan_status, loan_amnt) %>%
   janitor::adorn_percentages()
 ```
 
@@ -207,9 +219,30 @@ loan_test %>%
   janitor::adorn_percentages()
 ```
 
+```{r}
+loan_train %>%
+  janitor::tabyl(loan_status, annual_inc) %>%
+  janitor::adorn_percentages()
+```
+
 
 ```{r}
-loan_fit <- rpart(formula = loan_status ~  term + home_ownership, 
+loan_test %>%
+  janitor::tabyl(loan_status, term) %>%
+  janitor::adorn_percentages()
+```
+
+```{r}
+loan_train %>%
+janitor::tabyl(loan_status, term) %>%
+  janitor::adorn_percentages()  
+```
+
+
+
+
+```{r}
+loan_fit <- rpart(formula = loan_status ~  term + home_ownership + loan_amnt, 
                      data = loan_train)
 
 rpart.plot(loan_fit,
@@ -219,10 +252,19 @@ rpart.plot(loan_fit,
            digits = 4)
 ```
 
+
 ```{r}
+loan_fit <- rpart(formula = loan_status ~ dti, 
+                     data = loan_train)
 
+rpart.plot(loan_fit,
+           yesno = 2,
+           fallen.leaves = TRUE,
+           faclen = 6,
+           digits = 4)
+```
 
-
+            
 
 
 

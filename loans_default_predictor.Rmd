@@ -131,8 +131,6 @@ labs( x= "Loan Status",
 #### While debt consolidation could arise from various other sources, such as auto or home equity lines, loans from these sources are secured and, hence, considerably different than unsecured credit like LC
 
 
-
-
 # Exploriarity analysis
 
 #### Before building a model i think it is important to consider the key characteristics of a loan that has been defaulted on so that we are in a stronger position to understand what are the strong predictors of a loan defaulting.  I have undertaken further industry reading to inform this work.  A list of sources is at the end of the Markdown.
