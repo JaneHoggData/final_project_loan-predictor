@@ -109,7 +109,18 @@ loansdropped %>%
   count(loan_status)
 ```
 
+
+```{r}
+  ggplot(loansdropped) +
+  geom_bar(aes(x= loan_status), fill = "light blue")+
+labs( x= "Loan Status",
+        y= "Number of Loans",
+        title = "Lending Club Status of Loans Data")
+```
+
 #  Key Take Aways
+
+### Total of 42,531 individual loan accounts with 5,653 charged off (meaning that the lender has written off the debt and the account is closed) and 33,586 fully paid off loans.
 
 #### Majority of the loans are for 36 months (74%) and (26%) and for 60 months.
 
@@ -118,6 +129,8 @@ loansdropped %>%
 #### Debt consolidation (19,776 loans) 46% of loans followed by paying off credit card debt (5,477) 13% and then other (4425) 10% are the top three purposes of the loan request. It should be noted that this is self reported and caution should be exercised when considering the validity of this information.
 
 #### While debt consolidation could arise from various other sources, such as auto or home equity lines, loans from these sources are secured and, hence, considerably different than unsecured credit like LC
+
+
 
 
 # Exploriarity analysis
@@ -148,6 +161,12 @@ default1 %>%
   group_by(term, term_count = n())
 ```
 
+
+```{r}
+default1%>%
+  count(loan_status)
+```
+
 ```{r}
 defaulthome <-default1 %>% 
   group_by(home_ownership) %>%
@@ -166,7 +185,7 @@ default_arranged <- default1 %>%
 ```{r}
 summary(default_arranged)
 ```
-### Total of 42,531 individual loan accounts with 5,653 charged off (meaning that the lender has written off the debt and the account is closed) 
+
 
 ### Data set for default loans is 5,653 and on average the default amount is $12,134 - across the business this could be an estimated value of $68,593,502 so any reduction in the number of defaulting loans by say 1% could be $68,000 additional revenue.
 
