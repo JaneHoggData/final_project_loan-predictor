@@ -47,8 +47,41 @@ lending_club_loans <- clean_names(lending_club_loans)
 ```
 ```{r}
 loans1 <- lending_club_loans %>%
-  select(loan_amnt,term,int_rate,sub_grade,home_ownership,annual_inc,purpose, loan_status,dti)
+  select(loan_amnt,term,int_rate,sub_grade,home_ownership,annual_inc,purpose, loan_status,emp_length, dti)
 ```
+
+
+```{r}
+loansgeo <- lending_club_loans %>%
+   select(loan_status, emp_length)
+ggplot(loansgeo)+
+  geom_bar(aes(x = emp_length), fill = "light blue")+
+  coord_flip()+
+labs( x= "Length of Employment",
+        y= "Number of Loans",
+        title = "Lending Club Status of Loans Data")
+```
+
+
+
+
+
+```{r}
+loansgeo <- lending_club_loans %>%
+   select(loan_status, emp_length)%>%
+  summarise(total_count = n())%>%
+ggplot(aes(x = loan_status, y = total_count, fill = emp_length))+
+  geom_bar(stat = "identity" , position = "dodge") + 
+  scale_fill_brewer(palette="Dark2") + 
+  ylab("Total count") + xlab("Loan Status")+
+labs( x= "Loan Status",
+        y= "Number of Loans",
+        title = "Lending Club Status of Loans v Employment Years")
+```
+
+
+
+
 
 
 #  View the structure of the data
@@ -74,6 +107,9 @@ loans3 <- loans2 %>%
   filter(!is.na(annual_inc))
 
 ```
+
+
+
 
 ```{r}
 summary(as.factor(loans2$term))
@@ -117,6 +153,12 @@ labs( x= "Loan Status",
         y= "Number of Loans",
         title = "Lending Club Status of Loans Data")
 ```
+
+
+
+
+
+
 
 #  Key Take Aways
 
@@ -164,6 +206,17 @@ default1 %>%
 default1%>%
   count(loan_status)
 ```
+```{r}
+glimpse(default1)
+```
+
+```{r}
+default1%>%
+  select(term)%>%
+count()
+```
+
+
 
 ```{r}
 defaulthome <-default1 %>% 
@@ -198,9 +251,11 @@ labs( x= "Term of Loan",
         title = "Lending Club Default Loans Data")
 ```
 
+
 #### Loans with a longer term of 60 months make up a higher percentage of the defaults loans - we could conclude that the longer theterm the higher the exposure to changes in a persons financial status e.g employment or other personal circumstances. Historically, only the most financially secure individuals would be eligiable for a longer term loan.
 
 #### For the purpose of this work the loan term could be considered a factor in the probability of a customer defaulting.
+
 
 ```{r}
 ggplot(default1) +
@@ -225,6 +280,39 @@ ggplot(default1) +
 #### An applicants housing status can also be considerd a factor in Default loans also have a higher percentage of renters - unsurprising and also might be considered a higher risk when lending as a credit check cannot be secured from the other lender. Furthermore those with a mortage may be in a position to get a loans that are secured against their property. Housing status could be considered a factor in the probability of a customer defaulting.
 
 #### There is a slight increase in the number of people defaulting who are renters with 50% renting and 41% having a mortage.  For the purpose of the model home status could be consider a factor in the probabilty of a customer defaulting.
+
+```{r}
+default_dti <-default1 %>%
+  select(dti, term)%>%
+  arrange(desc(dti))%>%
+
+summarise(default_dti)
+
+
+
+```
+
+
+```{r}
+ggplot(default_dti) +
+  geom_bar(aes (x = dti, fill = term), stat = "count")
+```
+
+
+
+
+
+```{r}
+ggplot(default1) +
+  geom_bar(aes(x=dti), fill = "light blue")+
+   labs( x= "Debt to Income Ratio %",
+        y= "Number of Default Loans",
+        title = "Lending Club Loans Data",
+        subtitle = "DTI %")
+```
+
+
+
 
 
 ```{r}
