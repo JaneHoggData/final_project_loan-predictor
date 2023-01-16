@@ -34,7 +34,7 @@ lending_club_loans <- clean_names(lending_club_loans)
 
 ```{r}
 loans1 <- lending_club_loans %>%
-  select(loan_amnt,term,int_rate,sub_grade,home_ownership,annual_inc,purpose, loan_status,dti)
+  select(loan_amnt,term,int_rate,sub_grade,home_ownership,annual_inc,purpose, loan_status,emp_length, dti)
 ```
 ```{r}
 loans2 <- loans1 %>%
@@ -76,8 +76,11 @@ loansdropped %>%
   summarise(total_count = n())%>%
 ggplot(aes(x = loan_status, y = total_count, fill = term)) + 
   geom_bar(stat = "identity", position = "dodge") + 
-  scale_fill_brewer(palette="Dark2") + 
-  ylab("Total count") + xlab("Loan Status")
+  scale_fill_brewer(palette="Dark2") +
+  labs( x= "Status of Loan",
+        y= "Number of Loans",
+        title = "Lending Club Status of Loan v Term ")
+  
 ```
 
 ```{r}
@@ -88,7 +91,11 @@ loansdropped %>%
 ggplot(aes(x = loan_status, y = total_count, fill = home_ownership)) + 
   geom_bar(stat = "identity", position = "dodge") + 
   scale_fill_brewer(palette="Dark2") + 
-  ylab("Total count") + xlab("Loan Status")
+  ylab("Total count") + xlab("Loan Status")+
+  labs( x= "Loan Status",
+        y= "Number of Loans",
+        title = "Lending Club Status of Loan v Home Status ")
+  
 ```
 
 
@@ -238,14 +245,20 @@ janitor::tabyl(loan_status, term) %>%
   janitor::adorn_percentages()  
 ```
 
+```{r}
+loan_train%>%
+  glimpse()
+```
 
 
 
 ```{r}
-loan_fit <- rpart(formula = loan_status ~  term + home_ownership + loan_amnt, 
+loan_fit <- rpart(formula = loan_status ~  dti+ loan_amnt +log(annual_inc), 
                      data = loan_train)
 
-rpart.plot(loan_fit,
+rpart.plot(loan_fit)
+
+,
            yesno = 2,
            fallen.leaves = TRUE,
            faclen = 6,
