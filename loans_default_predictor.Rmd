@@ -13,6 +13,7 @@ library('mosaic')
 library('mosaicData')
 library('modelr')
 library('readxl')
+library('broom')
 ```
 
 
@@ -64,8 +65,6 @@ labs( x= "Length of Employment",
 
 
 
-
-
 ```{r}
 loansgeo <- lending_club_loans %>%
    select(loan_status, emp_length)%>%
@@ -78,8 +77,6 @@ labs( x= "Loan Status",
         y= "Number of Loans",
         title = "Lending Club Status of Loans v Employment Years")
 ```
-
-
 
 
 
@@ -284,9 +281,9 @@ ggplot(default1) +
 ```{r}
 default_dti <-default1 %>%
   select(dti, term)%>%
-  arrange(desc(dti))%>%
+  arrange(desc(dti))
 
-summarise(default_dti)
+
 
 
 
@@ -295,7 +292,12 @@ summarise(default_dti)
 
 ```{r}
 ggplot(default_dti) +
-  geom_bar(aes (x = dti, fill = term), stat = "count")
+  geom_bar(aes (x = dti, fill = term), stat = "count")+
+  labs( x= "Count %",
+        y= "Debt to Income Ratio",
+        title = "Lending Club Loans Data v Term",
+        subtitle = "DTI %")
+ 
 ```
 
 
@@ -313,6 +315,15 @@ ggplot(default1) +
 
 
 
+```{r}
+ggplot(default1) +
+  geom_point(aes(x=dti, y= ), fill = "light blue")+
+   labs( x= "Debt to Income Ratio %",
+        y= "Number of Default Loans",
+        title = "Lending Club Loans Data",
+        subtitle = "DTI %")
+```
+
 
 
 ```{r}
@@ -329,15 +340,6 @@ ggplot(default1) +
 #### Limiting exposure to the loans being used for this purpose may be a consideration in the future.
 
 
-```{r}
-defaultrate <-default1 %>% 
-  group_by(int_rate) %>%
-view(defaultrate)
-count(defaultrate)
-```
-
-
-
 
 
 ```{r}
@@ -348,6 +350,12 @@ ggplot(default1) +
         title = "Lending Club Default Loans Data",
         subtitle = "Term & Purpose",
         fill = "Term")
+```
+```{r}
+ggplot(default1)+
+  aes(loan_amnt, int_rate, colour = term)+
+  geom_point()
+  
 ```
 XX rubbish plot - may chuck
 
@@ -371,14 +379,33 @@ ggplot(default1) +
 
 #Our ultimate goal is the prediction of loan defaults from a given set of observations by selecting explanatory (independent) variables (also called feature in machine learning parlance) that result in an acceptable model performance as quantified by a pre-defined measure. This goal will also impact our exploratory data analysis. 
 
+`
+
 
 
 ```{r}
+
 loansmodelling <-loansdropped %>%
   mutate(loan_status = recode(loan_status,"Fully Paid" = FALSE, "Charged Off" = TRUE)) 
 loansmodelling
 ```
 
+
+```{r}
+ggplot(loansmodelling,
+       aes(x=dti, y = as.integer (loan_status))) +
+  geom_point(fill = "light blue")+
+  geom_smooth()+
+  coord_cartesian(ylim = c(0.05, 0.2))+
+   labs( x= "Debt to Income Ratio %",
+        y= "Number of Default Loans",
+        title = "Lending Club Loans Data",
+        subtitle = "DTI %")
+```
+
+```{r}
+
+```
 
 
 ```{r}
@@ -466,8 +493,16 @@ loan_data_logreg_model
 ```
 #higher the dti more likely to default, higher the term etc - all good predictors of the higher chance of defaulting.
 
+## But need to think carefully about the statistical significance of each predictor we ##add into the model. A good first step in this direction is to examine the p
+##-value of each predictor.
 
 
+```{r}
+tidy_out <- clean_names(tidy(loan_data_logreg_model))
+tidy_out
+```
+
+##from this we can see that dti, loan amount and term of the loan are statistically significant but the annual income is not.
 
 
 
