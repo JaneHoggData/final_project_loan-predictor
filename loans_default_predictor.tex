@@ -1,0 +1,1634 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Lending Club - Identifying Factors that Influence Customers Defaulting on Loans},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Lending Club - Identifying Factors that Influence Customers
+Defaulting on Loans}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}readxl\textquotesingle{}}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}tidyverse\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
+## v ggplot2 3.4.0      v purrr   0.3.4 
+## v tibble  3.1.8      v dplyr   1.0.10
+## v tidyr   1.2.1      v stringr 1.4.1 
+## v readr   2.1.3      v forcats 0.5.2
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.2.2
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}janitor\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'janitor'
+## 
+## The following objects are masked from 'package:stats':
+## 
+##     chisq.test, fisher.test
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}GGally\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'GGally' was built under R version 4.2.2
+\end{verbatim}
+
+\begin{verbatim}
+## Registered S3 method overwritten by 'GGally':
+##   method from   
+##   +.gg   ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}fastDummies\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'fastDummies' was built under R version 4.2.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}ggfortify\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggfortify' was built under R version 4.2.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}mosaic\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'mosaic' was built under R version 4.2.2
+\end{verbatim}
+
+\begin{verbatim}
+## Registered S3 method overwritten by 'mosaic':
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2
+## 
+## The 'mosaic' package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.
+## 
+## Attaching package: 'mosaic'
+## 
+## The following object is masked from 'package:Matrix':
+## 
+##     mean
+## 
+## The following objects are masked from 'package:dplyr':
+## 
+##     count, do, tally
+## 
+## The following object is masked from 'package:purrr':
+## 
+##     cross
+## 
+## The following object is masked from 'package:ggplot2':
+## 
+##     stat
+## 
+## The following objects are masked from 'package:stats':
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var
+## 
+## The following objects are masked from 'package:base':
+## 
+##     max, mean, min, prod, range, sample, sum
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}mosaicData\textquotesingle{}}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}modelr\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'modelr'
+## 
+## The following object is masked from 'package:mosaic':
+## 
+##     resample
+## 
+## The following object is masked from 'package:ggformula':
+## 
+##     na.warn
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}readxl\textquotesingle{}}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}broom\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'broom'
+## 
+## The following object is masked from 'package:modelr':
+## 
+##     bootstrap
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"wesanderson"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'wesanderson' was built under R version 4.2.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"RColorBrewer"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\NormalTok{lending\_club\_loans }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"C:/Users/44792/OneDrive/Desktop/Codeclan 2022/final\_project\_loan\_default\_predictor/data/lending\_club\_loans.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 42538 Columns: 114
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (22): term, int_rate, sub_grade, emp_title, emp_length, home_ownership, ...
+## dbl (37): id, member_id, loan_amnt, funded_amnt, funded_amnt_inv, installmen...
+## lgl (55): initial_list_status, mths_since_last_major_derog, annual_inc_joint...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{View}\NormalTok{(lending\_club\_loans)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{background}{%
+\section{Background}\label{background}}
+
+\hypertarget{lending-club-lc-was-established-in-2007-and-there-are-now-over-4-million-members.-it-is-a-peer-to-peer-lender-p2p-and-the-first-in-the-usa-to-register-its-offering-as-securities-with-sec-securities-and-exchange-commission.-lc-intersects-technology-and-finance-and-with-this-approach-there-is-the-possibility-of-progressing-a-more-stream-lined-business-model-with-an-on-line-offering-and-no-physical-facilities.-in-addition-they-use-machine-learning-to-develop-a-risk-management-model-that-can-eliminate-lending-bias-and-also-focus-on-the-most-profitable-customer-base.}{%
+\paragraph{Lending Club (LC) was established in 2007 and there are now
+over 4 million members. It is a peer-to-peer lender (P2P) and the first
+in the USA to register its offering as securities with SEC (Securities
+and Exchange Commission). LC intersects technology and finance and with
+this approach there is the possibility of progressing a more
+stream-lined business model with an on-line offering and no physical
+facilities. In addition they use machine learning to develop a risk
+management model that can eliminate lending bias and also focus on the
+most profitable customer
+base.}\label{lending-club-lc-was-established-in-2007-and-there-are-now-over-4-million-members.-it-is-a-peer-to-peer-lender-p2p-and-the-first-in-the-usa-to-register-its-offering-as-securities-with-sec-securities-and-exchange-commission.-lc-intersects-technology-and-finance-and-with-this-approach-there-is-the-possibility-of-progressing-a-more-stream-lined-business-model-with-an-on-line-offering-and-no-physical-facilities.-in-addition-they-use-machine-learning-to-develop-a-risk-management-model-that-can-eliminate-lending-bias-and-also-focus-on-the-most-profitable-customer-base.}}
+
+\hypertarget{lc-also-has-two-distinct-customer-bases.-the-loan-customer-and-then-the-lenders.-they-are-a-signifiant-network-of-people-providing-the-micro-loans-and-as-a-consequence-of-this-model-it-is-essential-that-business-information-is-transparent-enough-for-lenders-to-make-informed-decision-about-the-percentage-of-defaults-but-also-the-rate-of-return-for-their-funds.}{%
+\paragraph{LC also has two distinct customer bases. The loan customer
+and then the lenders. They are a signifiant network of people providing
+the micro-loans and as a consequence of this model it is essential that
+business information is transparent enough for lenders to make informed
+decision about the percentage of defaults but also the rate of return
+for their
+funds.}\label{lc-also-has-two-distinct-customer-bases.-the-loan-customer-and-then-the-lenders.-they-are-a-signifiant-network-of-people-providing-the-micro-loans-and-as-a-consequence-of-this-model-it-is-essential-that-business-information-is-transparent-enough-for-lenders-to-make-informed-decision-about-the-percentage-of-defaults-but-also-the-rate-of-return-for-their-funds.}}
+
+\hypertarget{this-data-and-the-subsequent-model-is-a-good-example-of-how-ddd-data-driven-decisions-can-be-used-to-ensure-there-is-a-more-transparent-approach-to-accessing-personal-finance-and-also-investing-in-new-ways.}{%
+\paragraph{This data and the subsequent model is a good example of how
+DDD (Data Driven Decisions) can be used to ensure there is a more
+transparent approach to accessing personal finance and also investing in
+new
+ways.}\label{this-data-and-the-subsequent-model-is-a-good-example-of-how-ddd-data-driven-decisions-can-be-used-to-ensure-there-is-a-more-transparent-approach-to-accessing-personal-finance-and-also-investing-in-new-ways.}}
+
+\hypertarget{the-data-set-is-from-kaggle-and-is-collected-from-2007-2018-accepted-applications.}{%
+\paragraph{The data set is from Kaggle and is collected from 2007-2018
+accepted
+applications.}\label{the-data-set-is-from-kaggle-and-is-collected-from-2007-2018-accepted-applications.}}
+
+\hypertarget{ethical-consideration-in-the-development-of-machine-learning-models}{%
+\section{Ethical consideration in the development of Machine Learning
+Models}\label{ethical-consideration-in-the-development-of-machine-learning-models}}
+
+\hypertarget{when-gathering-personal-data-consumer-data-protection-legislation-needs-to-be-considered-respected-and-the-legislation-followed.}{%
+\paragraph{When gathering personal data consumer data protection
+legislation needs to be considered, respected and the legislation
+followed.}\label{when-gathering-personal-data-consumer-data-protection-legislation-needs-to-be-considered-respected-and-the-legislation-followed.}}
+
+\hypertarget{secondly-when-considering-the-use-of-machine-learning-it-is-important-to-be-transparent-with-customer-and-investors-about-the-use-of-machine-learning-during-the-decision-making-process.-as-noted-in-the-2021-annual-reports-from-lc-their-marketing-materials-are-clear-that-the-company-use-over-150million-cells-of-data-to-support-the-use-of-artificial-intelligence-driven-credit-decisions-and-machine-learning-models-are-being-used-across-the-customer-lifecycle-to-potentially-expand-access-to-credit.}{%
+\paragraph{Secondly, when considering the use of machine learning it is
+important to be transparent with customer and investors about the use of
+machine learning during the decision-making process. As noted in the
+2021 annual reports from LC their marketing materials are clear that the
+company use over 150million cells of data to support the use of
+artificial intelligence-driven credit decisions and machine learning
+models are being used across the customer lifecycle to potentially
+expand access to
+credit.}\label{secondly-when-considering-the-use-of-machine-learning-it-is-important-to-be-transparent-with-customer-and-investors-about-the-use-of-machine-learning-during-the-decision-making-process.-as-noted-in-the-2021-annual-reports-from-lc-their-marketing-materials-are-clear-that-the-company-use-over-150million-cells-of-data-to-support-the-use-of-artificial-intelligence-driven-credit-decisions-and-machine-learning-models-are-being-used-across-the-customer-lifecycle-to-potentially-expand-access-to-credit.}}
+
+\hypertarget{diversity-and-inclusion-in-the-development-of-a-model-is-also-important-as-bias-can-be-introduced-if-the-machine-learning-models-are-limited-by-the-data-that-it-gets-to-train-on.-developing-a-team-with-a-wide-range-of-experience-and-from-a-diverse-range-of-backgrounds-is-important-to-progress-this.-i-would-go-so-far-to-say-that-it-is-particularly-important-to-engage-people-with-direct-experience-of-some-of-the-challenges-of-restricted-access-to-credit-due-to-personal-or-work-situations.}{%
+\paragraph{Diversity and inclusion in the development of a model is also
+important as bias can be introduced if the machine learning models are
+limited by the data that it gets to train on. Developing a team with a
+wide range of experience and from a diverse range of backgrounds is
+important to progress this. I would go so far to say that it is
+particularly important to engage people with direct experience of some
+of the challenges of restricted access to credit due to personal or work
+situations.}\label{diversity-and-inclusion-in-the-development-of-a-model-is-also-important-as-bias-can-be-introduced-if-the-machine-learning-models-are-limited-by-the-data-that-it-gets-to-train-on.-developing-a-team-with-a-wide-range-of-experience-and-from-a-diverse-range-of-backgrounds-is-important-to-progress-this.-i-would-go-so-far-to-say-that-it-is-particularly-important-to-engage-people-with-direct-experience-of-some-of-the-challenges-of-restricted-access-to-credit-due-to-personal-or-work-situations.}}
+
+\hypertarget{i-would-recommend-that-further-work-be-done-on-some-of-the-new-test-models-what-if-by-google-so-that-the-models-can-be-challenged-using-a-number-of-other-data-inputs.}{%
+\paragraph{I would recommend that further work be done on some of the
+new test models ``What If'' by Google so that the models can be
+challenged using a number of other data
+inputs.}\label{i-would-recommend-that-further-work-be-done-on-some-of-the-new-test-models-what-if-by-google-so-that-the-models-can-be-challenged-using-a-number-of-other-data-inputs.}}
+
+\hypertarget{data-preparation-and-cleaning}{%
+\section{Data Preparation and
+Cleaning}\label{data-preparation-and-cleaning}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{view}\NormalTok{(lending\_club\_loans)}
+\NormalTok{lending\_club\_loans }\OtherTok{\textless{}{-}} \FunctionTok{clean\_names}\NormalTok{(lending\_club\_loans)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lendingverification }\OtherTok{\textless{}{-}}\NormalTok{ lending\_club\_loans}\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{select}\NormalTok{(verification\_status, loan\_status)}
+\FunctionTok{view}\NormalTok{(lendingverification)}
+\FunctionTok{glimpse}\NormalTok{(lendingverification)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 42,538
+## Columns: 2
+## $ verification_status <chr> "Verified", "Source Verified", "Not Verified", "So~
+## $ loan_status         <chr> "Fully Paid", "Charged Off", "Fully Paid", "Fully ~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lendingverification}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(loan\_status, verification\_status)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 25 x 3
+##    loan_status                                         verification_status     n
+##    <chr>                                               <chr>               <int>
+##  1 Charged Off                                         Not Verified         2144
+##  2 Charged Off                                         Source Verified      1444
+##  3 Charged Off                                         Verified             2065
+##  4 Current                                             Not Verified           79
+##  5 Current                                             Source Verified       139
+##  6 Current                                             Verified              295
+##  7 Default                                             Source Verified         1
+##  8 Does not meet the credit policy. Status:Charged Off Not Verified          511
+##  9 Does not meet the credit policy. Status:Charged Off Source Verified        82
+## 10 Does not meet the credit policy. Status:Charged Off Verified              168
+## # ... with 15 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(lendingverification)}\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ verification\_status, }\AttributeTok{fill =}\NormalTok{ loan\_status))}\SpecialCharTok{+} 
+  \FunctionTok{coord\_flip}\NormalTok{()}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Verification Status"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club verification Status"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-6-1.pdf}
+\#\#\#\# From the total number of charged off loans 5,653 we can see
+that 38\% of the loans are not verified. Increaseing the number of
+verification prior to approval
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loans1 }\OtherTok{\textless{}{-}}\NormalTok{ lending\_club\_loans }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(loan\_amnt,term,int\_rate,sub\_grade,home\_ownership,annual\_inc,purpose, loan\_status,emp\_length, dti)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(loans1)}\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ emp\_length, }\AttributeTok{fill =}\NormalTok{ loan\_status))}\SpecialCharTok{+} 
+  \FunctionTok{coord\_flip}\NormalTok{()}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Length of Employment"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Length of Employment"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\hypertarget{view-the-structure-of-the-data}{%
+\section{View the structure of the
+data}\label{view-the-structure-of-the-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(loans1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 42,538
+## Columns: 10
+## $ loan_amnt      <dbl> 5000, 2500, 2400, 10000, 3000, 5000, 7000, 3000, 5600, ~
+## $ term           <chr> "36 months", "60 months", "36 months", "36 months", "60~
+## $ int_rate       <chr> "10.65%", "15.27%", "15.96%", "13.49%", "12.69%", "7.90~
+## $ sub_grade      <chr> "B2", "C4", "C5", "C1", "B5", "A4", "C5", "E1", "F2", "~
+## $ home_ownership <chr> "RENT", "RENT", "RENT", "RENT", "RENT", "RENT", "RENT",~
+## $ annual_inc     <dbl> 24000.00, 30000.00, 12252.00, 49200.00, 80000.00, 36000~
+## $ purpose        <chr> "credit_card", "car", "small_business", "other", "other~
+## $ loan_status    <chr> "Fully Paid", "Charged Off", "Fully Paid", "Fully Paid"~
+## $ emp_length     <chr> "10+ years", "< 1 year", "10+ years", "10+ years", "1 y~
+## $ dti            <dbl> 27.65, 1.00, 8.72, 20.00, 17.94, 11.20, 23.51, 5.35, 5.~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(loans1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tibble [42,538 x 10] (S3: tbl_df/tbl/data.frame)
+##  $ loan_amnt     : num [1:42538] 5000 2500 2400 10000 3000 ...
+##  $ term          : chr [1:42538] "36 months" "60 months" "36 months" "36 months" ...
+##  $ int_rate      : chr [1:42538] "10.65%" "15.27%" "15.96%" "13.49%" ...
+##  $ sub_grade     : chr [1:42538] "B2" "C4" "C5" "C1" ...
+##  $ home_ownership: chr [1:42538] "RENT" "RENT" "RENT" "RENT" ...
+##  $ annual_inc    : num [1:42538] 24000 30000 12252 49200 80000 ...
+##  $ purpose       : chr [1:42538] "credit_card" "car" "small_business" "other" ...
+##  $ loan_status   : chr [1:42538] "Fully Paid" "Charged Off" "Fully Paid" "Fully Paid" ...
+##  $ emp_length    : chr [1:42538] "10+ years" "< 1 year" "10+ years" "10+ years" ...
+##  $ dti           : num [1:42538] 27.65 1 8.72 20 17.94 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(loans1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    loan_amnt         term             int_rate          sub_grade        
+##  Min.   :  500   Length:42538       Length:42538       Length:42538      
+##  1st Qu.: 5200   Class :character   Class :character   Class :character  
+##  Median : 9700   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   :11090                                                           
+##  3rd Qu.:15000                                                           
+##  Max.   :35000                                                           
+##  NA's   :3                                                               
+##  home_ownership       annual_inc        purpose          loan_status       
+##  Length:42538       Min.   :   1896   Length:42538       Length:42538      
+##  Class :character   1st Qu.:  40000   Class :character   Class :character  
+##  Mode  :character   Median :  59000   Mode  :character   Mode  :character  
+##                     Mean   :  69137                                        
+##                     3rd Qu.:  82500                                        
+##                     Max.   :6000000                                        
+##                     NA's   :7                                              
+##   emp_length             dti       
+##  Length:42538       Min.   : 0.00  
+##  Class :character   1st Qu.: 8.20  
+##  Mode  :character   Median :13.47  
+##                     Mean   :13.37  
+##                     3rd Qu.:18.68  
+##                     Max.   :29.99  
+##                     NA's   :3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loans2 }\OtherTok{\textless{}{-}}\NormalTok{ loans1 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(loan\_amnt))}
+\NormalTok{loans2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 42,535 x 10
+##    loan_amnt term  int_r~1 sub_g~2 home_~3 annua~4 purpose loan_~5 emp_l~6   dti
+##        <dbl> <chr> <chr>   <chr>   <chr>     <dbl> <chr>   <chr>   <chr>   <dbl>
+##  1      5000 36 m~ 10.65%  B2      RENT      24000 credit~ Fully ~ 10+ ye~ 27.6 
+##  2      2500 60 m~ 15.27%  C4      RENT      30000 car     Charge~ < 1 ye~  1   
+##  3      2400 36 m~ 15.96%  C5      RENT      12252 small_~ Fully ~ 10+ ye~  8.72
+##  4     10000 36 m~ 13.49%  C1      RENT      49200 other   Fully ~ 10+ ye~ 20   
+##  5      3000 60 m~ 12.69%  B5      RENT      80000 other   Current 1 year  17.9 
+##  6      5000 36 m~ 7.90%   A4      RENT      36000 wedding Fully ~ 3 years 11.2 
+##  7      7000 60 m~ 15.96%  C5      RENT      47004 debt_c~ Fully ~ 8 years 23.5 
+##  8      3000 36 m~ 18.64%  E1      RENT      48000 car     Fully ~ 9 years  5.35
+##  9      5600 60 m~ 21.28%  F2      OWN       40000 small_~ Charge~ 4 years  5.55
+## 10      5375 60 m~ 12.69%  B5      RENT      15000 other   Charge~ < 1 ye~ 18.1 
+## # ... with 42,525 more rows, and abbreviated variable names 1: int_rate,
+## #   2: sub_grade, 3: home_ownership, 4: annual_inc, 5: loan_status,
+## #   6: emp_length
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loans3 }\OtherTok{\textless{}{-}}\NormalTok{ loans2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(annual\_inc))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{as.factor}\NormalTok{(loans2}\SpecialCharTok{$}\NormalTok{term))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 36 months 60 months 
+##     31534     11001
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{as.factor}\NormalTok{(loans2}\SpecialCharTok{$}\NormalTok{sub\_grade))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   A1   A2   A3   A4   A5   B1   B2   B3   B4   B5   C1   C2   C3   C4   C5   D1 
+## 1142 1520 1823 2905 2793 1882 2113 2997 2590 2807 2264 2157 1658 1370 1291 1053 
+##   D2   D3   D4   D5   E1   E2   E3   E4   E5   F1   F2   F3   F4   F5   G1   G2 
+## 1485 1322 1140 1016  884  791  668  552  499  392  308  236  211  154  141  107 
+##   G3   G4   G5 
+##   79   99   86
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{as.factor}\NormalTok{(loans2}\SpecialCharTok{$}\NormalTok{dti))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       0      12      10      18    19.2    13.2    13.5    16.8   12.48   14.29 
+##     206      54      46      46      45      43      41      41      40      38 
+##      15     4.8       6    20.4     8.4    15.6   17.04    21.6    9.17     9.6 
+##      38      37      37      36      35      35      35      35      34      34 
+##    10.8    12.5   12.86   14.44    6.76   10.64    11.5    17.4    8.88   10.03 
+##      34      34      34      34      33      33      33      33      32      32 
+##   13.75    14.4   14.76   15.38   15.63     7.8       9   12.62   12.69   13.28 
+##      32      32      32      32      32      31      31      31      31      31 
+##   14.97   15.31   16.32   18.72      20   23.52   10.16   10.43   13.51   13.68 
+##      31      31      31      31      31      31      30      30      30      30 
+##   15.36   16.77   19.63    9.48   11.04   11.22   12.27   12.54   12.96    13.1 
+##      30      30      30      29      29      29      29      29      29      29 
+##   14.36   14.74   15.44   15.55   15.77   15.84    16.2   16.36    16.4   16.56 
+##      29      29      29      29      29      29      29      29      29      29 
+##    19.9   20.69   22.43     6.4    6.65       7     8.8    9.66   10.05    10.2 
+##      29      29      29      28      28      28      28      28      28      28 
+##   10.68   10.77   11.35   11.42   12.74   13.65   13.71    13.9      14   14.08 
+##      28      28      28      28      28      28      28      28      28      28 
+##   14.35    14.6   14.73   15.14    15.2   15.53   15.86   16.95   17.16 (Other) 
+##      28      28      28      28      28      28      28      28      28   39228
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{as.factor}\NormalTok{(loans2}\SpecialCharTok{$}\NormalTok{purpose))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                car        credit_card debt_consolidation        educational 
+##               1615               5477              19776                422 
+##   home_improvement              house     major_purchase            medical 
+##               3199                426               2311                753 
+##             moving              other   renewable_energy     small_business 
+##                629               4425                106               1992 
+##           vacation            wedding 
+##                400               1004
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{as.factor}\NormalTok{(loans2}\SpecialCharTok{$}\NormalTok{loan\_status))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                         Charged Off 
+##                                                5653 
+##                                             Current 
+##                                                 513 
+##                                             Default 
+##                                                   1 
+## Does not meet the credit policy. Status:Charged Off 
+##                                                 761 
+##  Does not meet the credit policy. Status:Fully Paid 
+##                                                1988 
+##                                          Fully Paid 
+##                                               33586 
+##                                     In Grace Period 
+##                                                  16 
+##                                   Late (16-30 days) 
+##                                                   5 
+##                                  Late (31-120 days) 
+##                                                  12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(loans3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 42,531
+## Columns: 10
+## $ loan_amnt      <dbl> 5000, 2500, 2400, 10000, 3000, 5000, 7000, 3000, 5600, ~
+## $ term           <chr> "36 months", "60 months", "36 months", "36 months", "60~
+## $ int_rate       <chr> "10.65%", "15.27%", "15.96%", "13.49%", "12.69%", "7.90~
+## $ sub_grade      <chr> "B2", "C4", "C5", "C1", "B5", "A4", "C5", "E1", "F2", "~
+## $ home_ownership <chr> "RENT", "RENT", "RENT", "RENT", "RENT", "RENT", "RENT",~
+## $ annual_inc     <dbl> 24000.00, 30000.00, 12252.00, 49200.00, 80000.00, 36000~
+## $ purpose        <chr> "credit_card", "car", "small_business", "other", "other~
+## $ loan_status    <chr> "Fully Paid", "Charged Off", "Fully Paid", "Fully Paid"~
+## $ emp_length     <chr> "10+ years", "< 1 year", "10+ years", "10+ years", "1 y~
+## $ dti            <dbl> 27.65, 1.00, 8.72, 20.00, 17.94, 11.20, 23.51, 5.35, 5.~
+\end{verbatim}
+
+\#Further cleaning of the data here at this point to drop the other loan
+status information.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loansdropped }\OtherTok{\textless{}{-}}\NormalTok{loans3 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(loan\_status }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Charged Off"}\NormalTok{,}\StringTok{"Fully Paid"}
+\NormalTok{                    ))}
+\NormalTok{loansdropped }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(loan\_status)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   loan_status     n
+##   <chr>       <int>
+## 1 Charged Off  5653
+## 2 Fully Paid  33586
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \FunctionTok{ggplot}\NormalTok{(loansdropped) }\SpecialCharTok{+}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ emp\_length, }\AttributeTok{fill =}\NormalTok{ loan\_status)}\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ loan\_status), }\AttributeTok{fill =} \StringTok{"dark blue"}\NormalTok{)}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Loan Status"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Status of Loans Data"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(loansdropped) }\SpecialCharTok{+}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ term, }\AttributeTok{fill =}\NormalTok{ loan\_status)}\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ loan\_status), }\AttributeTok{fill =} \StringTok{"dark blue"}\NormalTok{)}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Loan Status"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Status of Loans Data"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(loansdropped)}\SpecialCharTok{+}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ emp\_length, }\AttributeTok{fill =}\NormalTok{ loan\_status)}\SpecialCharTok{+}
+     \FunctionTok{geom\_bar}\NormalTok{()}\SpecialCharTok{+}
+    \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Dark2"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{()}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Length of Employment"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Loans status"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Length of Employment"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(loansdropped)}\SpecialCharTok{+}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ purpose, }\AttributeTok{fill =}\NormalTok{ loan\_status)}\SpecialCharTok{+}
+     \FunctionTok{geom\_bar}\NormalTok{()}\SpecialCharTok{+}
+    \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Dark2"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{()}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Purpose of the Loan"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Loans  and Status of Loan"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Purpose of Loan and Status"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(loansdropped)}\SpecialCharTok{+}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ sub\_grade, }\AttributeTok{fill =}\NormalTok{ loan\_status)}\SpecialCharTok{+}
+     \FunctionTok{geom\_bar}\NormalTok{()}\SpecialCharTok{+}
+    \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Dark2"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{()}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Loan Grade"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Loans and Status of Loan"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Loan Grade and Status of Loan"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(loansdropped)}\SpecialCharTok{+}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ loan\_amnt, }\AttributeTok{fill =}\NormalTok{ loan\_status)}\SpecialCharTok{+}
+     \FunctionTok{geom\_bar}\NormalTok{()}\SpecialCharTok{+}
+    \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Dark2"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{()}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Loan Grade"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Loans and Status of Loan"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Loan Grade and Status of Loan"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+\hypertarget{key-take-aways}{%
+\section{Key Take Aways}\label{key-take-aways}}
+
+\hypertarget{total-of-42531-individual-loan-accounts-with-5653-charged-off-meaning-that-the-lender-has-written-off-the-debt-and-the-account-is-closed-and-33586-fully-paid-off-loans.}{%
+\subsubsection{Total of 42,531 individual loan accounts with 5,653
+charged off (meaning that the lender has written off the debt and the
+account is closed) and 33,586 fully paid off
+loans.}\label{total-of-42531-individual-loan-accounts-with-5653-charged-off-meaning-that-the-lender-has-written-off-the-debt-and-the-account-is-closed-and-33586-fully-paid-off-loans.}}
+
+\hypertarget{majority-of-the-loans-are-for-36-months-74-and-26-and-for-60-months.}{%
+\paragraph{Majority of the loans are for 36 months (74\%) and (26\%) and
+for 60
+months.}\label{majority-of-the-loans-are-for-36-months-74-and-26-and-for-60-months.}}
+
+\hypertarget{the-lc-internal-credit-rating-ranges-from-a-to-g-with-5-subcategories-a-total-of-35-credit-ratings.-a1-being-the-least-likely-to-default-and-g5-the-catergory-with-the-highest-risk-profile.-from-the-data-there-is-an-uptick-in-the-defaults-at-the-d3-point-onwards-until-we-reach-g5.}{%
+\paragraph{The LC internal credit rating ranges from A to G with 5
+subcategories (a total of 35 credit ratings). A1 being the least likely
+to default and G5 the catergory with the highest risk profile. From the
+data there is an uptick in the defaults at the D3 point onwards until we
+reach
+G5.}\label{the-lc-internal-credit-rating-ranges-from-a-to-g-with-5-subcategories-a-total-of-35-credit-ratings.-a1-being-the-least-likely-to-default-and-g5-the-catergory-with-the-highest-risk-profile.-from-the-data-there-is-an-uptick-in-the-defaults-at-the-d3-point-onwards-until-we-reach-g5.}}
+
+\hypertarget{debt-consolidation-19776-loans-46-of-loans-followed-by-paying-off-credit-card-debt-5477-13-and-then-other-4425-10-are-the-top-three-purposes-of-the-loan-request.-it-should-be-noted-that-this-is-self-reported-and-caution-should-be-exercised-when-considering-the-validity-of-this-information.}{%
+\paragraph{Debt consolidation (19,776 loans) 46\% of loans followed by
+paying off credit card debt (5,477) 13\% and then other (4425) 10\% are
+the top three purposes of the loan request. It should be noted that this
+is self reported and caution should be exercised when considering the
+validity of this
+information.}\label{debt-consolidation-19776-loans-46-of-loans-followed-by-paying-off-credit-card-debt-5477-13-and-then-other-4425-10-are-the-top-three-purposes-of-the-loan-request.-it-should-be-noted-that-this-is-self-reported-and-caution-should-be-exercised-when-considering-the-validity-of-this-information.}}
+
+\hypertarget{while-debt-consolidation-could-arise-from-various-other-sources-such-as-auto-or-home-equity-lines-loans-from-these-sources-are-secured-and-hence-considerably-different-than-unsecured-credit-like-lc}{%
+\paragraph{While debt consolidation could arise from various other
+sources, such as auto or home equity lines, loans from these sources are
+secured and, hence, considerably different than unsecured credit like
+LC}\label{while-debt-consolidation-could-arise-from-various-other-sources-such-as-auto-or-home-equity-lines-loans-from-these-sources-are-secured-and-hence-considerably-different-than-unsecured-credit-like-lc}}
+
+\hypertarget{exploriarity-analysis}{%
+\section{Exploriarity analysis}\label{exploriarity-analysis}}
+
+\hypertarget{before-building-a-model-i-think-it-is-important-to-consider-the-key-characteristics-of-a-loan-that-has-been-defaulted-on-so-that-we-are-in-a-stronger-position-to-understand-what-are-the-strong-predictors-of-a-loan-defaulting.-i-have-undertaken-further-industry-reading-to-inform-this-work.-a-list-of-sources-is-at-the-end-of-the-markdown.}{%
+\paragraph{Before building a model i think it is important to consider
+the key characteristics of a loan that has been defaulted on so that we
+are in a stronger position to understand what are the strong predictors
+of a loan defaulting. I have undertaken further industry reading to
+inform this work. A list of sources is at the end of the
+Markdown.}\label{before-building-a-model-i-think-it-is-important-to-consider-the-key-characteristics-of-a-loan-that-has-been-defaulted-on-so-that-we-are-in-a-stronger-position-to-understand-what-are-the-strong-predictors-of-a-loan-defaulting.-i-have-undertaken-further-industry-reading-to-inform-this-work.-a-list-of-sources-is-at-the-end-of-the-markdown.}}
+
+\hypertarget{visual-and-explore-the-characteristics-of-the-defaults-loans-only-to-uderstand-more-about-the-type-of-loan-that-is-written-off.}{%
+\paragraph{Visual and explore the characteristics of the defaults loans
+only to uderstand more about the type of loan that is written
+off.}\label{visual-and-explore-the-characteristics-of-the-defaults-loans-only-to-uderstand-more-about-the-type-of-loan-that-is-written-off.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{default1 }\OtherTok{\textless{}{-}}\NormalTok{loansdropped }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(loan\_status }\SpecialCharTok{==} \StringTok{"Charged Off"}\NormalTok{)}
+\NormalTok{default1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5,653 x 10
+##    loan_amnt term  int_r~1 sub_g~2 home_~3 annua~4 purpose loan_~5 emp_l~6   dti
+##        <dbl> <chr> <chr>   <chr>   <chr>     <dbl> <chr>   <chr>   <chr>   <dbl>
+##  1      2500 60 m~ 15.27%  C4      RENT      30000 car     Charge~ < 1 ye~  1   
+##  2      5600 60 m~ 21.28%  F2      OWN       40000 small_~ Charge~ 4 years  5.55
+##  3      5375 60 m~ 12.69%  B5      RENT      15000 other   Charge~ < 1 ye~ 18.1 
+##  4      9000 36 m~ 13.49%  C1      RENT      30000 debt_c~ Charge~ < 1 ye~ 10.1 
+##  5     10000 36 m~ 10.65%  B2      RENT     100000 other   Charge~ 3 years  7.06
+##  6     21000 36 m~ 12.42%  B4      RENT     105000 debt_c~ Charge~ 10+ ye~ 13.2 
+##  7      6000 36 m~ 11.71%  B3      RENT      76000 major_~ Charge~ 1 year   2.4 
+##  8     15000 36 m~ 14.27%  C2      RENT      60000 debt_c~ Charge~ 9 years 15.2 
+##  9      5000 60 m~ 16.77%  D2      RENT      50004 other   Charge~ 2 years 14.0 
+## 10      5000 36 m~ 8.90%   A5      MORTGA~  100000 debt_c~ Charge~ 10+ ye~ 16.3 
+## # ... with 5,643 more rows, and abbreviated variable names 1: int_rate,
+## #   2: sub_grade, 3: home_ownership, 4: annual_inc, 5: loan_status,
+## #   6: emp_length
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(default1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 5,653
+## Columns: 10
+## $ loan_amnt      <dbl> 2500, 5600, 5375, 9000, 10000, 21000, 6000, 15000, 5000~
+## $ term           <chr> "60 months", "60 months", "60 months", "36 months", "36~
+## $ int_rate       <chr> "15.27%", "21.28%", "12.69%", "13.49%", "10.65%", "12.4~
+## $ sub_grade      <chr> "C4", "F2", "B5", "C1", "B2", "B4", "B3", "C2", "D2", "~
+## $ home_ownership <chr> "RENT", "OWN", "RENT", "RENT", "RENT", "RENT", "RENT", ~
+## $ annual_inc     <dbl> 30000, 40000, 15000, 30000, 100000, 105000, 76000, 6000~
+## $ purpose        <chr> "car", "small_business", "other", "debt_consolidation",~
+## $ loan_status    <chr> "Charged Off", "Charged Off", "Charged Off", "Charged O~
+## $ emp_length     <chr> "< 1 year", "4 years", "< 1 year", "< 1 year", "3 years~
+## $ dti            <dbl> 1.00, 5.55, 18.08, 10.08, 7.06, 13.22, 2.40, 15.22, 13.~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(default1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    loan_amnt         term             int_rate          sub_grade        
+##  Min.   :  900   Length:5653        Length:5653        Length:5653       
+##  1st Qu.: 5600   Class :character   Class :character   Class :character  
+##  Median :10000   Mode  :character   Mode  :character   Mode  :character  
+##  Mean   :12134                                                           
+##  3rd Qu.:16750                                                           
+##  Max.   :35000                                                           
+##  home_ownership       annual_inc        purpose          loan_status       
+##  Length:5653        Min.   :   4080   Length:5653        Length:5653       
+##  Class :character   1st Qu.:  37008   Class :character   Class :character  
+##  Mode  :character   Median :  53000   Mode  :character   Mode  :character  
+##                     Mean   :  62483                                        
+##                     3rd Qu.:  75000                                        
+##                     Max.   :1250000                                        
+##   emp_length             dti       
+##  Length:5653        Min.   : 0.00  
+##  Class :character   1st Qu.: 9.06  
+##  Mode  :character   Median :14.31  
+##                     Mean   :14.01  
+##                     3rd Qu.:19.29  
+##                     Max.   :29.85
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{default1 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(term, }\AttributeTok{term\_count =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5,653 x 11
+## # Groups:   term, term_count [2]
+##    loan_amnt term  int_r~1 sub_g~2 home_~3 annua~4 purpose loan_~5 emp_l~6   dti
+##        <dbl> <chr> <chr>   <chr>   <chr>     <dbl> <chr>   <chr>   <chr>   <dbl>
+##  1      2500 60 m~ 15.27%  C4      RENT      30000 car     Charge~ < 1 ye~  1   
+##  2      5600 60 m~ 21.28%  F2      OWN       40000 small_~ Charge~ 4 years  5.55
+##  3      5375 60 m~ 12.69%  B5      RENT      15000 other   Charge~ < 1 ye~ 18.1 
+##  4      9000 36 m~ 13.49%  C1      RENT      30000 debt_c~ Charge~ < 1 ye~ 10.1 
+##  5     10000 36 m~ 10.65%  B2      RENT     100000 other   Charge~ 3 years  7.06
+##  6     21000 36 m~ 12.42%  B4      RENT     105000 debt_c~ Charge~ 10+ ye~ 13.2 
+##  7      6000 36 m~ 11.71%  B3      RENT      76000 major_~ Charge~ 1 year   2.4 
+##  8     15000 36 m~ 14.27%  C2      RENT      60000 debt_c~ Charge~ 9 years 15.2 
+##  9      5000 60 m~ 16.77%  D2      RENT      50004 other   Charge~ 2 years 14.0 
+## 10      5000 36 m~ 8.90%   A5      MORTGA~  100000 debt_c~ Charge~ 10+ ye~ 16.3 
+## # ... with 5,643 more rows, 1 more variable: term_count <int>, and abbreviated
+## #   variable names 1: int_rate, 2: sub_grade, 3: home_ownership, 4: annual_inc,
+## #   5: loan_status, 6: emp_length
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{default1}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(loan\_status)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   loan_status     n
+##   <chr>       <int>
+## 1 Charged Off  5653
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(default1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 5,653
+## Columns: 10
+## $ loan_amnt      <dbl> 2500, 5600, 5375, 9000, 10000, 21000, 6000, 15000, 5000~
+## $ term           <chr> "60 months", "60 months", "60 months", "36 months", "36~
+## $ int_rate       <chr> "15.27%", "21.28%", "12.69%", "13.49%", "10.65%", "12.4~
+## $ sub_grade      <chr> "C4", "F2", "B5", "C1", "B2", "B4", "B3", "C2", "D2", "~
+## $ home_ownership <chr> "RENT", "OWN", "RENT", "RENT", "RENT", "RENT", "RENT", ~
+## $ annual_inc     <dbl> 30000, 40000, 15000, 30000, 100000, 105000, 76000, 6000~
+## $ purpose        <chr> "car", "small_business", "other", "debt_consolidation",~
+## $ loan_status    <chr> "Charged Off", "Charged Off", "Charged Off", "Charged O~
+## $ emp_length     <chr> "< 1 year", "4 years", "< 1 year", "< 1 year", "3 years~
+## $ dti            <dbl> 1.00, 5.55, 18.08, 10.08, 7.06, 13.22, 2.40, 15.22, 13.~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{default1}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(term)}\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1  5653
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{defaulthome }\OtherTok{\textless{}{-}}\NormalTok{default1 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(home\_ownership) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{ ())}
+\FunctionTok{view}\NormalTok{(defaulthome)}
+\FunctionTok{summarise}\NormalTok{(defaulthome)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{default\_arranged }\OtherTok{\textless{}{-}}\NormalTok{ default1 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(loan\_amnt, term)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(loan\_amnt))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(default\_arranged)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    loan_amnt         term          
+##  Min.   :  900   Length:5653       
+##  1st Qu.: 5600   Class :character  
+##  Median :10000   Mode  :character  
+##  Mean   :12134                     
+##  3rd Qu.:16750                     
+##  Max.   :35000
+\end{verbatim}
+
+\hypertarget{data-set-for-default-loans-is-5653-and-on-average-the-default-amount-is-12134---across-the-business-this-could-be-an-estimated-value-of-68593502-so-any-reduction-in-the-number-of-defaulting-loans-by-say-1-could-be-68000-additional-revenue.}{%
+\subsubsection{Data set for default loans is 5,653 and on average the
+default amount is \$12,134 - across the business this could be an
+estimated value of \$68,593,502 so any reduction in the number of
+defaulting loans by say 1\% could be \$68,000 additional
+revenue.}\label{data-set-for-default-loans-is-5653-and-on-average-the-default-amount-is-12134---across-the-business-this-could-be-an-estimated-value-of-68593502-so-any-reduction-in-the-number-of-defaulting-loans-by-say-1-could-be-68000-additional-revenue.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(default1) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ term), }\AttributeTok{fill =} \StringTok{"light blue"}\NormalTok{)}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Term of Loan"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Default Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Default Loans Data"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+\hypertarget{loans-with-a-longer-term-of-60-months-make-up-a-higher-percentage-of-the-defaults-loans---we-could-conclude-that-the-longer-the-term-the-higher-the-exposure-to-changes-in-a-persons-financial-status-e.g-employment-or-other-personal-circumstances.-historically-only-the-most-financially-secure-individuals-would-be-eligiable-for-a-longer-term-loan.}{%
+\paragraph{Loans with a longer term of 60 months make up a higher
+percentage of the defaults loans - we could conclude that the longer the
+term the higher the exposure to changes in a persons financial status
+e.g employment or other personal circumstances. Historically, only the
+most financially secure individuals would be eligiable for a longer term
+loan.}\label{loans-with-a-longer-term-of-60-months-make-up-a-higher-percentage-of-the-defaults-loans---we-could-conclude-that-the-longer-the-term-the-higher-the-exposure-to-changes-in-a-persons-financial-status-e.g-employment-or-other-personal-circumstances.-historically-only-the-most-financially-secure-individuals-would-be-eligiable-for-a-longer-term-loan.}}
+
+\hypertarget{for-the-purpose-of-this-work-the-loan-term-could-be-considered-a-factor-in-the-probability-of-a-customer-defaulting.}{%
+\paragraph{For the purpose of this work the loan term could be
+considered a factor in the probability of a customer
+defaulting.}\label{for-the-purpose-of-this-work-the-loan-term-could-be-considered-a-factor-in-the-probability-of-a-customer-defaulting.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(default1) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ loan\_amnt), }\AttributeTok{fill =} \StringTok{"dark blue"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{()}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Loan Amount in $"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Default Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Default Loans Data"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-37-1.pdf}
+\#\#\#\# Here you can see four spikes in the data where there are more
+defaults on certain values of loans - \$7,000, \$18,000, \$25,000 and
+then the max of \$35,000 - these loan size could be considered a factor
+in the probabilty of a customer defaulting and risk profile increased
+(e.g interest rates) increased at these particular values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(default1) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{home\_ownership), }\AttributeTok{fill =} \StringTok{"dark blue"}\NormalTok{)}\SpecialCharTok{+}
+   \FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Houseing Status"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Default Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Loans Data"}\NormalTok{,}
+        \AttributeTok{subtitle =} \StringTok{"Houseing Status"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-38-1.pdf}
+\#\#\#\# An applicants housing status can also be considerd a factor in
+default loans. There is a a higher percentage of renters - unsurprising
+and also might be considered a higher risk when lending as a credit
+check cannot be secured from other traditional lender. Furthermore those
+with a mortage may be in a position to get a loan that is secured
+against their property. Housing status could be considered a factor in
+the probability of a customer defaulting.
+
+\hypertarget{there-is-a-slight-increase-in-the-number-of-people-defaulting-who-are-renters-with-50-renting-and-41-having-a-mortage.-for-the-purpose-of-the-model-home-status-could-be-consider-a-factor-in-the-probabilty-of-a-customer-defaulting.}{%
+\paragraph{There is a slight increase in the number of people defaulting
+who are renters with 50\% renting and 41\% having a mortage. For the
+purpose of the model home status could be consider a factor in the
+probabilty of a customer
+defaulting.}\label{there-is-a-slight-increase-in-the-number-of-people-defaulting-who-are-renters-with-50-renting-and-41-having-a-mortage.-for-the-purpose-of-the-model-home-status-could-be-consider-a-factor-in-the-probabilty-of-a-customer-defaulting.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{default\_dti }\OtherTok{\textless{}{-}}\NormalTok{default1 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(dti, term)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(dti))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(default\_dti) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{ (}\AttributeTok{x =}\NormalTok{ dti, }\AttributeTok{fill =}\NormalTok{ term), }\AttributeTok{stat =} \StringTok{"count"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Count \%"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Debt to Income Ratio"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Loans Data v Term"}\NormalTok{,}
+        \AttributeTok{subtitle =} \StringTok{"DTI \%"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-40-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(default1) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{dti), }\AttributeTok{fill =} \StringTok{"light blue"}\NormalTok{)}\SpecialCharTok{+}
+   \FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Debt to Income Ratio \%"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Default Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Loans Data"}\NormalTok{,}
+        \AttributeTok{subtitle =} \StringTok{"DTI \%"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-41-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(default1) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ term, }\AttributeTok{fill =}\NormalTok{ purpose))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Term of Default Loan"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Default Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Default Loans Data"}\NormalTok{,}
+        \AttributeTok{subtitle =} \StringTok{"Term \& Purpose"}\NormalTok{,}
+        \AttributeTok{fill =} \StringTok{"Purpose of Loan"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-43-1.pdf}
+\#\#\#\# Debt consolidation, payment of credit card debts and ``other''
+continue to be the top three reasons for a loan and for a customer then
+defaulting. The purpose of a loan could be considered a factor in the
+chance of a customer defaulting and debt consolidation being a higher
+risk factor than for education or home improvements.
+
+\hypertarget{limiting-exposure-to-the-loans-being-used-for-this-purpose-may-be-a-consideration-in-the-future-or-offering-a-higher-interest-rate-to-mitiage-the-risk.}{%
+\paragraph{Limiting exposure to the loans being used for this purpose
+may be a consideration in the future or offering a higher interest rate
+to mitiage the
+risk.}\label{limiting-exposure-to-the-loans-being-used-for-this-purpose-may-be-a-consideration-in-the-future-or-offering-a-higher-interest-rate-to-mitiage-the-risk.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(default1) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ int\_rate, }\AttributeTok{fill =}\NormalTok{ term))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Interest Rate"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Default Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Default Loans Data"}\NormalTok{,}
+        \AttributeTok{subtitle =} \StringTok{"Term \& Purpose"}\NormalTok{,}
+        \AttributeTok{fill =} \StringTok{"Term"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-44-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(default1) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ term, }\AttributeTok{fill =}\NormalTok{ annual\_inc))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Term of Default Loan"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Default Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Default Loans Data"}\NormalTok{,}
+        \AttributeTok{subtitle =} \StringTok{"Term \& Purpose"}\NormalTok{,}
+        \AttributeTok{fill =} \StringTok{"Purpose of Loan"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: The following aesthetics were dropped during statistical transformation: fill
+## i This can happen when ggplot fails to infer the correct grouping structure in
+##   the data.
+## i Did you forget to specify a `group` aesthetic or to convert a numerical
+##   variable into a factor?
+\end{verbatim}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-45-1.pdf}
+
+\#loan status needs to be turned into a numerical column 0 or 1 for
+purpose of building a predictive model.
+
+\hypertarget{prediction-of-loan-defaults}{%
+\section{Prediction of Loan
+Defaults}\label{prediction-of-loan-defaults}}
+
+\hypertarget{our-ultimate-goal-is-the-prediction-of-loan-defaults-from-a-given-set-of-observations-by-selecting-explanatory-independent-variables-also-called-feature-in-machine-learning-that-result-in-an-acceptable-model-performance-as-quantified-by-a-pre-defined-measure.-this-goal-will-also-impact-our-exploratory-data-analysis.}{%
+\paragraph{Our ultimate goal is the prediction of loan defaults from a
+given set of observations by selecting explanatory (independent)
+variables (also called feature in machine learning) that result in an
+acceptable model performance as quantified by a pre-defined measure.
+This goal will also impact our exploratory data
+analysis.}\label{our-ultimate-goal-is-the-prediction-of-loan-defaults-from-a-given-set-of-observations-by-selecting-explanatory-independent-variables-also-called-feature-in-machine-learning-that-result-in-an-acceptable-model-performance-as-quantified-by-a-pre-defined-measure.-this-goal-will-also-impact-our-exploratory-data-analysis.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loansmodelling }\OtherTok{\textless{}{-}}\NormalTok{loansdropped }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{loan\_status =} \FunctionTok{recode}\NormalTok{(loan\_status,}\StringTok{"Fully Paid"} \OtherTok{=} \ConstantTok{FALSE}\NormalTok{, }\StringTok{"Charged Off"} \OtherTok{=} \ConstantTok{TRUE}\NormalTok{)) }
+\NormalTok{loansmodelling}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 39,239 x 10
+##    loan_amnt term  int_r~1 sub_g~2 home_~3 annua~4 purpose loan_~5 emp_l~6   dti
+##        <dbl> <chr> <chr>   <chr>   <chr>     <dbl> <chr>   <lgl>   <chr>   <dbl>
+##  1      5000 36 m~ 10.65%  B2      RENT      24000 credit~ FALSE   10+ ye~ 27.6 
+##  2      2500 60 m~ 15.27%  C4      RENT      30000 car     TRUE    < 1 ye~  1   
+##  3      2400 36 m~ 15.96%  C5      RENT      12252 small_~ FALSE   10+ ye~  8.72
+##  4     10000 36 m~ 13.49%  C1      RENT      49200 other   FALSE   10+ ye~ 20   
+##  5      5000 36 m~ 7.90%   A4      RENT      36000 wedding FALSE   3 years 11.2 
+##  6      7000 60 m~ 15.96%  C5      RENT      47004 debt_c~ FALSE   8 years 23.5 
+##  7      3000 36 m~ 18.64%  E1      RENT      48000 car     FALSE   9 years  5.35
+##  8      5600 60 m~ 21.28%  F2      OWN       40000 small_~ TRUE    4 years  5.55
+##  9      5375 60 m~ 12.69%  B5      RENT      15000 other   TRUE    < 1 ye~ 18.1 
+## 10      6500 60 m~ 14.65%  C3      OWN       72000 debt_c~ FALSE   5 years 16.1 
+## # ... with 39,229 more rows, and abbreviated variable names 1: int_rate,
+## #   2: sub_grade, 3: home_ownership, 4: annual_inc, 5: loan_status,
+## #   6: emp_length
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(loansmodelling,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{dti, }\AttributeTok{y =} \FunctionTok{as.integer}\NormalTok{ (loan\_status))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{fill =} \StringTok{"light blue"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{coord\_cartesian}\NormalTok{(}\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.2}\NormalTok{))}\SpecialCharTok{+}
+   \FunctionTok{labs}\NormalTok{( }\AttributeTok{x=} \StringTok{"Debt to Income Ratio \%"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Number of Default Loans"}\NormalTok{,}
+        \AttributeTok{title =} \StringTok{"Lending Club Loans Data"}\NormalTok{,}
+        \AttributeTok{subtitle =} \StringTok{"DTI \%"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
+\end{verbatim}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-47-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{glimpse}\NormalTok{(loansmodelling)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 39,239
+## Columns: 10
+## $ loan_amnt      <dbl> 5000, 2500, 2400, 10000, 5000, 7000, 3000, 5600, 5375, ~
+## $ term           <chr> "36 months", "60 months", "36 months", "36 months", "36~
+## $ int_rate       <chr> "10.65%", "15.27%", "15.96%", "13.49%", "7.90%", "15.96~
+## $ sub_grade      <chr> "B2", "C4", "C5", "C1", "A4", "C5", "E1", "F2", "B5", "~
+## $ home_ownership <chr> "RENT", "RENT", "RENT", "RENT", "RENT", "RENT", "RENT",~
+## $ annual_inc     <dbl> 24000.00, 30000.00, 12252.00, 49200.00, 36000.00, 47004~
+## $ purpose        <chr> "credit_card", "car", "small_business", "other", "weddi~
+## $ loan_status    <lgl> FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, T~
+## $ emp_length     <chr> "10+ years", "< 1 year", "10+ years", "10+ years", "3 y~
+## $ dti            <dbl> 27.65, 1.00, 8.72, 20.00, 11.20, 23.51, 5.35, 5.55, 18.~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(loansmodelling, }\DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 15 x 10
+##    loan_amnt term  int_r~1 sub_g~2 home_~3 annua~4 purpose loan_~5 emp_l~6   dti
+##        <dbl> <chr> <chr>   <chr>   <chr>     <dbl> <chr>   <lgl>   <chr>   <dbl>
+##  1      5000 36 m~ 10.65%  B2      RENT      24000 credit~ FALSE   10+ ye~ 27.6 
+##  2      2500 60 m~ 15.27%  C4      RENT      30000 car     TRUE    < 1 ye~  1   
+##  3      2400 36 m~ 15.96%  C5      RENT      12252 small_~ FALSE   10+ ye~  8.72
+##  4     10000 36 m~ 13.49%  C1      RENT      49200 other   FALSE   10+ ye~ 20   
+##  5      5000 36 m~ 7.90%   A4      RENT      36000 wedding FALSE   3 years 11.2 
+##  6      7000 60 m~ 15.96%  C5      RENT      47004 debt_c~ FALSE   8 years 23.5 
+##  7      3000 36 m~ 18.64%  E1      RENT      48000 car     FALSE   9 years  5.35
+##  8      5600 60 m~ 21.28%  F2      OWN       40000 small_~ TRUE    4 years  5.55
+##  9      5375 60 m~ 12.69%  B5      RENT      15000 other   TRUE    < 1 ye~ 18.1 
+## 10      6500 60 m~ 14.65%  C3      OWN       72000 debt_c~ FALSE   5 years 16.1 
+## 11     12000 36 m~ 12.69%  B5      OWN       75000 debt_c~ FALSE   10+ ye~ 10.8 
+## 12      9000 36 m~ 13.49%  C1      RENT      30000 debt_c~ TRUE    < 1 ye~ 10.1 
+## 13      3000 36 m~ 9.91%   B1      RENT      15000 credit~ FALSE   3 years 12.6 
+## 14     10000 36 m~ 10.65%  B2      RENT     100000 other   TRUE    3 years  7.06
+## 15      1000 36 m~ 16.29%  D1      RENT      28000 debt_c~ FALSE   < 1 ye~ 20.3 
+## # ... with abbreviated variable names 1: int_rate, 2: sub_grade,
+## #   3: home_ownership, 4: annual_inc, 5: loan_status, 6: emp_length
+\end{verbatim}
+
+\hypertarget{machine-model-1-logistic-regression}{%
+\section{Machine Model \textasciitilde{} 1 Logistic
+Regression}\label{machine-model-1-logistic-regression}}
+
+\hypertarget{predictive-analysis-using-a-machine-learning-model-is-an-effective-way-of-considering-the-relationships-between-a-variable-that-may-impact-on-a-customer-defaulting.}{%
+\paragraph{Predictive analysis using a machine learning model is an
+effective way of considering the relationships between a variable that
+may impact on a customer
+defaulting.}\label{predictive-analysis-using-a-machine-learning-model-is-an-effective-way-of-considering-the-relationships-between-a-variable-that-may-impact-on-a-customer-defaulting.}}
+
+\hypertarget{now-lets-have-a-look-at-the-relationships-with-loan-status.-i-will-split-the-variables-into-three-sets-as-the-output-of-ggpairs-will-be-slow-and-cramped-if-we-include-all-variables-at-once.-note-that-a-disadvantage-of-this-approach-is-that-it-will-be-difficult-to-visually-assess-relationships-between-some-predictor-pairs-if-they-fall-into-different-split-sets.}{%
+\paragraph{\texorpdfstring{Now let's have a look at the relationships
+with loan status. I will split the variables into three sets, as the
+output of \texttt{ggpairs()} will be slow and cramped if we include all
+variables at once. Note that a disadvantage of this approach is that it
+will be difficult to visually assess relationships between some
+predictor pairs if they fall into different split
+sets.}{Now let's have a look at the relationships with loan status. I will split the variables into three sets, as the output of ggpairs() will be slow and cramped if we include all variables at once. Note that a disadvantage of this approach is that it will be difficult to visually assess relationships between some predictor pairs if they fall into different split sets.}}\label{now-lets-have-a-look-at-the-relationships-with-loan-status.-i-will-split-the-variables-into-three-sets-as-the-output-of-ggpairs-will-be-slow-and-cramped-if-we-include-all-variables-at-once.-note-that-a-disadvantage-of-this-approach-is-that-it-will-be-difficult-to-visually-assess-relationships-between-some-predictor-pairs-if-they-fall-into-different-split-sets.}}
+
+\hypertarget{my-ultimate-goal-is-the-prediction-of-loan-defaults-from-a-given-set-of-observations-by-selecting-explanatory-independent-variables-also-called-features-in-machine-learning-that-result-in-an-acceptable-model-performance.-this-goal-will-also-impact-our-exploratory-data-analysis.}{%
+\paragraph{My ultimate goal is the prediction of loan defaults from a
+given set of observations by selecting explanatory (independent)
+variables (also called features in machine learning) that result in an
+acceptable model performance. This goal will also impact our exploratory
+data
+analysis.}\label{my-ultimate-goal-is-the-prediction-of-loan-defaults-from-a-given-set-of-observations-by-selecting-explanatory-independent-variables-also-called-features-in-machine-learning-that-result-in-an-acceptable-model-performance.-this-goal-will-also-impact-our-exploratory-data-analysis.}}
+
+\hypertarget{the-data-has-been-split-into-two-sets-identifying-loan-amount-term-and-home-ownership-against-the-loan-status.-the-final-set-is-annula-income-the-purpose-of-the-loan-and-dti-debt-to-income-ratio}{%
+\paragraph{the data has been split into two sets identifying loan
+amount, term and home ownership against the loan status. The final set
+is annula income, the purpose of the loan and dti (debt to income
+ratio)}\label{the-data-has-been-split-into-two-sets-identifying-loan-amount-term-and-home-ownership-against-the-loan-status.-the-final-set-is-annula-income-the-purpose-of-the-loan-and-dti-debt-to-income-ratio}}
+
+\hypertarget{ggpairs-is-then-used-to-see-the-predictive-relationships-with-the-variables.}{%
+\paragraph{GGpairs is then used to see the predictive relationships with
+the
+variables.}\label{ggpairs-is-then-used-to-see-the-predictive-relationships-with-the-variables.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loans\_split1 }\OtherTok{\textless{}{-}}\NormalTok{ loansmodelling }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(loan\_status, loan\_amnt,term,home\_ownership)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loans\_split2 }\OtherTok{\textless{}{-}}\NormalTok{ loansmodelling }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(loan\_status, annual\_inc, purpose, dti)}
+\end{Highlighting}
+\end{Shaded}
+
+\#Now develop the connection with ggpairs
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(GGally)}
+\FunctionTok{ggpairs}\NormalTok{( loans\_split1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-52-1.pdf}
+\#
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_plot1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(loans\_split1) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ loan\_amnt, }\AttributeTok{x =} \FunctionTok{as.integer}\NormalTok{(loan\_status)), }\AttributeTok{shape =} \DecValTok{1}\NormalTok{, }
+              \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.05}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Loan Status"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+
+\NormalTok{score\_plot1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_plot2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(loans\_split1) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ term, }\AttributeTok{x =} \FunctionTok{as.integer}\NormalTok{(loan\_status)), }\AttributeTok{shape =} \DecValTok{1}\NormalTok{, }
+              \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.05}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Loan Status"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+
+\NormalTok{score\_plot2}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(GGally)}
+\FunctionTok{ggpairs}\NormalTok{(loans\_split2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-55-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_plot3 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(loans\_split2) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ dti, }\AttributeTok{x =} \FunctionTok{as.integer}\NormalTok{(loan\_status)), }\AttributeTok{shape =} \DecValTok{1}\NormalTok{, }
+              \AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.05}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Loan Status"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+
+\NormalTok{score\_plot3}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{loans_default_predictor_files/figure-latex/unnamed-chunk-56-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loan\_data\_logreg\_model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(loan\_status }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dti}\SpecialCharTok{+}\NormalTok{ loan\_amnt}\SpecialCharTok{+}\NormalTok{ term }\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(annual\_inc), }\AttributeTok{data =}\NormalTok{ loansmodelling, }\AttributeTok{family =} \FunctionTok{binomial}\NormalTok{(}\AttributeTok{link =} \StringTok{\textquotesingle{}logit\textquotesingle{}}\NormalTok{))}
+\NormalTok{loan\_data\_logreg\_model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:  glm(formula = loan_status ~ dti + loan_amnt + term + log(annual_inc), 
+##     family = binomial(link = "logit"), data = loansmodelling)
+## 
+## Coefficients:
+##     (Intercept)              dti        loan_amnt    term60 months  
+##       3.749e+00        8.736e-03        1.889e-05        8.793e-01  
+## log(annual_inc)  
+##      -5.629e-01  
+## 
+## Degrees of Freedom: 39238 Total (i.e. Null);  39234 Residual
+## Null Deviance:       32350 
+## Residual Deviance: 31060     AIC: 31070
+\end{verbatim}
+
+\hypertarget{dti-loan-amount-and-term-are-all-good-predictors-of-the-higher-chance-of-defaulting-but-annual-income-returns-a-negative-and-is-not-that-strong-a-predictor.}{%
+\paragraph{dti, loan amount and term are all good predictors of the
+higher chance of defaulting but annual income returns a negative and is
+not that strong a
+predictor.}\label{dti-loan-amount-and-term-are-all-good-predictors-of-the-higher-chance-of-defaulting-but-annual-income-returns-a-negative-and-is-not-that-strong-a-predictor.}}
+
+\hypertarget{but-we-need-to-think-carefully-about-the-statistical-significance-of-each-predictor.-a-good-first-step-in-this-direction-is-to-examine-the-p-value-of-each-predictor.-probability-value}{%
+\paragraph{But we need to think carefully about the statistical
+significance of each predictor. A good first step in this direction is
+to examine the p-value of each predictor. Probability
+value}\label{but-we-need-to-think-carefully-about-the-statistical-significance-of-each-predictor.-a-good-first-step-in-this-direction-is-to-examine-the-p-value-of-each-predictor.-probability-value}}
+
+\hypertarget{a-p-value-is-a-statistical-measurement-used-to-validate-a-hypothesis-against-observed-data.-i-measures-the-probability-of-obtaining-the-observed-results-assuming-that-the-null-hypothesis-is-true.-the-lower-the-p-value-the-greater-the-statistical-significance-of-the-observed-difference}{%
+\paragraph{A p-value is a statistical measurement used to validate a
+hypothesis against observed data. I measures the probability of
+obtaining the observed results, assuming that the null hypothesis is
+true. The lower the p-value, the greater the statistical significance of
+the observed
+difference}\label{a-p-value-is-a-statistical-measurement-used-to-validate-a-hypothesis-against-observed-data.-i-measures-the-probability-of-obtaining-the-observed-results-assuming-that-the-null-hypothesis-is-true.-the-lower-the-p-value-the-greater-the-statistical-significance-of-the-observed-difference}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tidy\_out }\OtherTok{\textless{}{-}} \FunctionTok{clean\_names}\NormalTok{(}\FunctionTok{tidy}\NormalTok{(loan\_data\_logreg\_model))}
+\NormalTok{tidy\_out}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 5
+##   term              estimate  std_error statistic   p_value
+##   <chr>                <dbl>      <dbl>     <dbl>     <dbl>
+## 1 (Intercept)      3.75      0.330          11.4  6.40e- 30
+## 2 dti              0.00874   0.00222         3.94 8.21e-  5
+## 3 loan_amnt        0.0000189 0.00000232      8.13 4.13e- 16
+## 4 term60 months    0.879     0.0326         27.0  1.88e-160
+## 5 log(annual_inc) -0.563     0.0310        -18.2  7.10e- 74
+\end{verbatim}
+
+\hypertarget{from-this-we-can-see-that-dti-and-term-are-strong-predictors-with-loan-amount-and-annual-income-not.-so-much.}{%
+\paragraph{From this we can see that dti and term are strong predictors
+with loan amount and annual income not. so
+much.}\label{from-this-we-can-see-that-dti-and-term-are-strong-predictors-with-loan-amount-and-annual-income-not.-so-much.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loan\_data\_logreg\_model2 }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(loan\_status }\SpecialCharTok{\textasciitilde{}}\NormalTok{ purpose }\SpecialCharTok{+}\NormalTok{ home\_ownership }\SpecialCharTok{+}\NormalTok{ term }\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(annual\_inc), }\AttributeTok{data =}\NormalTok{ loansmodelling, }\AttributeTok{family =} \FunctionTok{binomial}\NormalTok{(}\AttributeTok{link =} \StringTok{\textquotesingle{}logit\textquotesingle{}}\NormalTok{))}
+\NormalTok{loan\_data\_logreg\_model2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:  glm(formula = loan_status ~ purpose + home_ownership + term + 
+##     log(annual_inc), family = binomial(link = "logit"), data = loansmodelling)
+## 
+## Coefficients:
+##               (Intercept)         purposecredit_card  
+##                   2.11502                    0.28219  
+## purposedebt_consolidation         purposeeducational  
+##                   0.56361                    0.81318  
+##   purposehome_improvement               purposehouse  
+##                   0.37896                    0.63205  
+##     purposemajor_purchase             purposemedical  
+##                   0.14374                    0.62176  
+##             purposemoving               purposeother  
+##                   0.65317                    0.68041  
+##   purposerenewable_energy      purposesmall_business  
+##                   0.83645                    1.30830  
+##           purposevacation             purposewedding  
+##                   0.55634                    0.16169  
+##        home_ownershipNONE        home_ownershipOTHER  
+##                  -8.49210                    0.57051  
+##         home_ownershipOWN         home_ownershipRENT  
+##                   0.01763                    0.07849  
+##             term60 months            log(annual_inc)  
+##                   0.99600                   -0.43859  
+## 
+## Degrees of Freedom: 39238 Total (i.e. Null);  39219 Residual
+## Null Deviance:       32350 
+## Residual Deviance: 30810     AIC: 30850
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tidy\_out }\OtherTok{\textless{}{-}} \FunctionTok{clean\_names}\NormalTok{(}\FunctionTok{tidy}\NormalTok{(loan\_data\_logreg\_model2))}
+\NormalTok{tidy\_out}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 20 x 5
+##    term                      estimate std_error statistic   p_value
+##    <chr>                        <dbl>     <dbl>     <dbl>     <dbl>
+##  1 (Intercept)                 2.12      0.326      6.48  9.23e- 11
+##  2 purposecredit_card          0.282     0.0968     2.91  3.57e-  3
+##  3 purposedebt_consolidation   0.564     0.0876     6.44  1.22e- 10
+##  4 purposeeducational          0.813     0.172      4.72  2.35e-  6
+##  5 purposehome_improvement     0.379     0.103      3.66  2.49e-  4
+##  6 purposehouse                0.632     0.168      3.76  1.67e-  4
+##  7 purposemajor_purchase       0.144     0.111      1.29  1.96e-  1
+##  8 purposemedical              0.622     0.137      4.54  5.72e-  6
+##  9 purposemoving               0.653     0.144      4.54  5.71e-  6
+## 10 purposeother                0.680     0.0959     7.09  1.30e- 12
+## 11 purposerenewable_energy     0.836     0.273      3.06  2.20e-  3
+## 12 purposesmall_business       1.31      0.101     12.9   4.08e- 38
+## 13 purposevacation             0.556     0.173      3.22  1.30e-  3
+## 14 purposewedding              0.162     0.139      1.17  2.43e-  1
+## 15 home_ownershipNONE         -8.49     68.5       -0.124 9.01e-  1
+## 16 home_ownershipOTHER         0.571     0.265      2.15  3.15e-  2
+## 17 home_ownershipOWN           0.0176    0.0585     0.301 7.63e-  1
+## 18 home_ownershipRENT          0.0785    0.0335     2.34  1.90e-  2
+## 19 term60 months               0.996     0.0308    32.3   5.55e-229
+## 20 log(annual_inc)            -0.439     0.0288   -15.2   2.49e- 52
+\end{verbatim}
+
+\hypertarget{from-this-we-can-see-that-when-looking-at-the-purpose-of-a-loan-debt-consolidation-other-and-a-major-purchase-are-strong-predictors-with-medical-bills-and-moving-being-less-of-a-factor.}{%
+\paragraph{From this we can see that when looking at the purpose of a
+loan debt consolidation, ``other'' and a ``major purchase'' are strong
+predictors with medical bills and moving being less of a
+factor.}\label{from-this-we-can-see-that-when-looking-at-the-purpose-of-a-loan-debt-consolidation-other-and-a-major-purchase-are-strong-predictors-with-medical-bills-and-moving-being-less-of-a-factor.}}
+
+\hypertarget{recommendations}{%
+\section{Recommendations}\label{recommendations}}
+
+\hypertarget{the-following-are-some-suggestions-to-consider-in-relation-to-how-lc-might-alter-their-existing-approach-to-lending-so-that-defaults-are-reduced.}{%
+\paragraph{The following are some suggestions to consider in relation to
+how LC might alter their existing approach to lending so that defaults
+are
+reduced.}\label{the-following-are-some-suggestions-to-consider-in-relation-to-how-lc-might-alter-their-existing-approach-to-lending-so-that-defaults-are-reduced.}}
+
+\hypertarget{reduce-exposure-to-longer-term-loans.}{%
+\paragraph{Reduce exposure to longer term
+loans.}\label{reduce-exposure-to-longer-term-loans.}}
+
+\hypertarget{reduce-exposure-to-loans-graded-d1-and-beyond.}{%
+\paragraph{Reduce exposure to loans graded D1 and
+beyond.}\label{reduce-exposure-to-loans-graded-d1-and-beyond.}}
+
+\hypertarget{model-three-tier-lending-term-as-opposed-to-a-two-tier.}{%
+\paragraph{Model three-tier lending term as opposed to a
+two-tier.}\label{model-three-tier-lending-term-as-opposed-to-a-two-tier.}}
+
+\hypertarget{reduce-exposure-to-debt-consolidationcredit-card-loans.}{%
+\paragraph{Reduce exposure to debt consolidation/credit card
+loans.}\label{reduce-exposure-to-debt-consolidationcredit-card-loans.}}
+
+\hypertarget{reduce-exposure-to-customers-with-a-dti-of-between-22---25-and-above.}{%
+\paragraph{Reduce exposure to customers with a DTI of between 22 - 25\%
+and
+above.}\label{reduce-exposure-to-customers-with-a-dti-of-between-22---25-and-above.}}
+
+\hypertarget{increase-verification-of-loans-information-prior-to-approval.}{%
+\paragraph{Increase verification of loans information prior to
+approval.}\label{increase-verification-of-loans-information-prior-to-approval.}}
+
+\hypertarget{review-the-gradiant-at-which-the-loan-approval-based-on-risk-profile-and-mitigation-of-the-risk-and-further-increase-the-interest-rate.}{%
+\paragraph{Review the gradiant at which the Loan approval, based on risk
+profile and mitigation of the risk, and further increase the interest
+rate.}\label{review-the-gradiant-at-which-the-loan-approval-based-on-risk-profile-and-mitigation-of-the-risk-and-further-increase-the-interest-rate.}}
+
+\end{document}

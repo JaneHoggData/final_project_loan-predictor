@@ -2,8 +2,10 @@
 title: "Lending Club - Identifying Factors that Influence Customers Defaulting on
   Loans"
 output:
-  pdf_document: default
   html_notebook: default
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 ```{r}
 library('readxl')
@@ -55,6 +57,31 @@ view(lending_club_loans)
 lending_club_loans <- clean_names(lending_club_loans)
 
 ```
+
+```{r}
+lendingverification <- lending_club_loans%>%
+select(verification_status, loan_status)
+view(lendingverification)
+glimpse(lendingverification)
+```
+
+```{r}
+lendingverification%>%
+  count(loan_status, verification_status)
+
+```
+
+```{r}
+ggplot(lendingverification)+
+  geom_bar(aes(x = verification_status, fill = loan_status))+ 
+  coord_flip()+
+labs( x= "Verification Status",
+        y= "Number of Loans",
+        title = "Lending Club verification Status")
+```
+#### From the total number of charged off loans 5,653 we can see that 38% of the loans are not verified.  Increaseing the number of verification prior to approval 
+
+
 ```{r}
 loans1 <- lending_club_loans %>%
   select(loan_amnt,term,int_rate,sub_grade,home_ownership,annual_inc,purpose, loan_status,emp_length, dti)
@@ -62,34 +89,13 @@ loans1 <- lending_club_loans %>%
 
 
 ```{r}
-loansgeo <- loans1 %>%
-   select(loan_status, emp_length)
-ggplot(loansgeo)+
-  geom_bar(aes(x = emp_length))+ scale_fill_brewer(palette = "Dark2")+
+ggplot(loans1)+
+  geom_bar(aes(x = emp_length, fill = loan_status))+ 
   coord_flip()+
 labs( x= "Length of Employment",
         y= "Number of Loans",
         title = "Lending Club Length of Employment")
 ```
-
-```{r}
-
-ggplot(loans1)+
-  aes(x = emp_length, fill = loan_status)+
-     geom_bar()+
-    scale_fill_brewer(palette = "Dark2")+
-  coord_flip()+
-labs( x= "Length of Employment",
-        y= "Number of Loans status",
-        title = "Lending Club Length of Employment")
-```
-
-
-
-ggplot(students) +
-  aes(x = school_year, fill = superpower) +
-  geom_bar() +
-  scale_fill_brewer(palette = "Dark2")
 
 
 #  View the structure of the data
@@ -320,7 +326,7 @@ labs( x= "Term of Loan",
 ggplot(default1) +
   geom_bar(aes(x= loan_amnt), fill = "dark blue")+
   coord_flip()+
-labs( x= "Loan Amount",
+labs( x= "Loan Amount in $",
         y= "Number of Default Loans",
         title = "Lending Club Default Loans Data")
 ```
@@ -534,7 +540,9 @@ loan_data_logreg_model
 ```
 #### dti, loan amount and term are all good predictors of the higher chance of defaulting but annual income returns a negative and is not that strong a predictor.
 
-#### But we need to think carefully about the statistical significance of each predictor. A good first step in this direction is to examine the p-value of each predictor.
+#### But we need to think carefully about the statistical significance of each predictor. A good first step in this direction is to examine the p-value of each predictor. Probability value
+
+#### A p-value is a statistical measurement used to validate a hypothesis against observed data. I measures the probability of obtaining the observed results, assuming that the null hypothesis is true. The lower the p-value, the greater the statistical significance of the observed difference
 
 
 ```{r}
@@ -542,13 +550,41 @@ tidy_out <- clean_names(tidy(loan_data_logreg_model))
 tidy_out
 ```
 
-#### From this we can see that dti and loan amount continue to be strong strong but annual income not.  
+#### From this we can see that dti and term are strong predictors with loan amount and annual income not. so much. 
+
+
+```{r}
+loan_data_logreg_model2 <- glm(loan_status ~ purpose + home_ownership + term +log(annual_inc), data = loansmodelling, family = binomial(link = 'logit'))
+loan_data_logreg_model2
+```
+
+
+```{r}
+tidy_out <- clean_names(tidy(loan_data_logreg_model2))
+tidy_out
+```
+
+#### From this we can see that when looking at the purpose of a loan debt consolidation, "other" and a "major purchase"  are strong predictors with medical bills and moving being less of a factor.
 
 
 #   Recommendations
 
-#### 
+#### The following are some suggestions to consider in relation to how LC might alter their existing approach to lending so that defaults are reduced.
 
+
+#### Reduce exposure to longer term loans.
+
+#### Reduce exposure to loans graded D1 and beyond.
+
+#### Model three-tier lending term as opposed to a two-tier.
+
+#### Reduce exposure to debt consolidation/credit card loans.
+
+#### Reduce exposure to customers with a DTI of between 22 - 25% and above.
+
+#### Increase verification of loans information prior to approval.
+
+#### Review the gradiant at which the Loan approval, based on risk profile and mitigation of the risk, and further increase the interest rate.
 
 
 
