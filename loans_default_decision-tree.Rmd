@@ -1,5 +1,5 @@
 ---
-title: "Predictive Modelling - Identifying Factors that Influence Customers Defaulting on Loans"
+title: "Identifying Factors that Influence Customers Defaulting on Loans"
 output: html_notebook
 ---
 
@@ -18,6 +18,9 @@ library('readxl')
 library("splitstackshape")
 library("rpart")
 library("rpart.plot")
+library("wesanderson")
+library("RColorBrewer")
+names(wes_palettes)
 ```
 
 
@@ -53,22 +56,23 @@ loansdropped %>%
   count(loan_status)
 ```
 ```{r}
+mycolour <-colorRampPalette(brewer.pal(name="Dark2", n = 8))(14)
 loansdropped %>%
   select(loan_status, purpose)%>%
   group_by(loan_status, purpose)%>%
   summarise(total_count = n())%>%
 ggplot(aes(x = loan_status, y = total_count, fill = purpose)) + 
   geom_bar(stat = "identity", position = "dodge") + 
-  scale_fill_brewer(palette="Dark2") + 
+  scale_fill_manual(values = mycolour)+
   ylab("Total count") + xlab("Loan Status")
   
 
 
-
-
 ```
 
-
+ 
+ 
+ 
 ```{r}
 loansdropped %>%
   select(loan_status, term)%>%

@@ -227,7 +227,7 @@ labs( x= "Loan Grade",
 
 #  Key Take Aways
 
-### Total of 42,531 individual loan accounts with 5,653 charged off (meaning that the lender has written off the debt and the account is closed) and 33,586 fully paid off loans.
+#### Total of 42,531 individual loan accounts with 5,653 charged off (meaning that the lender has written off the debt and the account is closed) and 33,586 fully paid off loans.
 
 #### Majority of the loans are for 36 months (74%) and (26%) and for 60 months.
 
@@ -238,12 +238,12 @@ labs( x= "Loan Grade",
 #### While debt consolidation could arise from various other sources, such as auto or home equity lines, loans from these sources are secured and, hence, considerably different than unsecured credit like LC
 
 
-# Exploriarity analysis
+# Analysis
 
 #### Before building a model i think it is important to consider the key characteristics of a loan that has been defaulted on so that we are in a stronger position to understand what are the strong predictors of a loan defaulting.  I have undertaken further industry reading to inform this work.  A list of sources is at the end of the Markdown.
 
 
-#### Visual and explore the characteristics of the defaults loans only to uderstand more about the type of loan that is written off.
+#### Her is will visual and explore the characteristics of the defaults loans only to uderstand more about the type of loan that is written off.
 
 
 
@@ -303,7 +303,7 @@ summary(default_arranged)
 ```
 
 
-### Data set for default loans is 5,653 and on average the default amount is $12,134 - across the business this could be an estimated value of $68,593,502 so any reduction in the number of defaulting loans by say 1% could be $68,000 additional revenue.
+#### Data set for default loans is 5,653 and on average the default amount is $12,134 - across the business this could be an estimated value of $68,593,502 so any reduction in the number of defaulting loans by say 1% could be $68,000 additional revenue.
 
 
 
@@ -330,7 +330,7 @@ labs( x= "Loan Amount in $",
         y= "Number of Default Loans",
         title = "Lending Club Default Loans Data")
 ```
-#### Here you can see four spikes in the data where there are more defaults on certain values of loans - $7,000, $18,000, $25,000 and then the max of $35,000 - these loan size could be considered a factor in the probabilty of a customer defaulting and risk profile increased (e.g interest rates) increased at these particular values.
+#### Here you can see four spikes in the data where there are more defaults on certain values of loans - $7,000, $18,000, $25,000 and then the max of $35,000 - the loan size could be considered a factor in the probabilty of a customer defaulting and risk profile increased (e.g interest rates) increased at these particular values.
 
 
 
@@ -429,7 +429,7 @@ ggplot(default1) +
 
 # Prediction of Loan Defaults
 
-#### Our ultimate goal is the prediction of loan defaults from a given set of observations by selecting explanatory (independent) variables (also called feature in machine learning) that result in an acceptable model performance as quantified by a pre-defined measure. This goal will also impact our exploratory data analysis. 
+#### My ultimate goal is the prediction of loan defaults from a given set of observations by selecting explanatory (independent) variables (also called feature in machine learning) that result in an acceptable model performance as quantified by a pre-defined measure. This goal will also impact our exploratory data analysis. 
 
 
 
@@ -469,7 +469,7 @@ head(loansmodelling, 15)
 
 #### Predictive analysis using a machine learning model is an effective way of considering the relationships between a variable that may impact on a customer defaulting.
 
-#### Now let's have a look at the relationships with loan status. I will split the variables into three sets, as the output of `ggpairs()` will be slow and cramped if we include all variables at once. Note that a disadvantage of this approach is that it will be difficult to visually assess relationships between some predictor pairs if they fall into different split sets.
+#### Now let's have a look at the relationships with loan status. I have split the variables into three sets, as the output of `ggpairs()` was slow and cramped when I include all variables at once. Note that a disadvantage of this approach is that it will be difficult to visually assess relationships between some predictor pairs if they fall into different split sets.
 
 #### My ultimate goal is the prediction of loan defaults from a given set of observations by selecting explanatory (independent) variables (also called features in machine learning) that result in an acceptable model performance. This goal will also impact our exploratory data analysis. 
 
@@ -550,7 +550,7 @@ tidy_out <- clean_names(tidy(loan_data_logreg_model))
 tidy_out
 ```
 
-#### From this we can see that dti and term are strong predictors with loan amount and annual income not. so much. 
+#### From this we can see that dti and term are strong predictors with loan amount and annual income not so much. 
 
 
 ```{r}
@@ -564,12 +564,16 @@ tidy_out <- clean_names(tidy(loan_data_logreg_model2))
 tidy_out
 ```
 
+
 #### From this we can see that when looking at the purpose of a loan debt consolidation, "other" and a "major purchase"  are strong predictors with medical bills and moving being less of a factor.
+
 
 
 #   Recommendations
 
+
 #### The following are some suggestions to consider in relation to how LC might alter their existing approach to lending so that defaults are reduced.
+
 
 
 #### Reduce exposure to longer term loans.
@@ -588,6 +592,22 @@ tidy_out
 
 
 
+
+#   sources
+
+#### https://www.lendingclub.com/loans/resource-center/calculating-debt-to-income
+
+#### https://www.lendingclub.com/foliofn/rateDetail.action
+
+#### https://www.nclc.org/resources/predatory-installment-lending-in-the-states-2021/
+
+https://www.federalreserve.gov/releases/chargeoff/delallsa.htm   - predominately to look at deliquency rates (charge off) in P2P but only commercial banks available.
+
+#### https://www.federalreserve.gov/econres/notes/feds-notes/do-marketplace-lending-platforms-offer-lower-rates-to-consumers-20181022.html - considering if P2P offer more competative rates to people.
+
+#### https://moneyclubber.com/blog/how-high-is-the-default-rate-on-peer-to-peer-lending/
+
+#### https://www.fca.org.uk/
 
 
 
