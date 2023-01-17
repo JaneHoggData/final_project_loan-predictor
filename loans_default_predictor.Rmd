@@ -17,6 +17,8 @@ library('mosaicData')
 library('modelr')
 library('readxl')
 library('broom')
+library("wesanderson")
+library("RColorBrewer")
 ```
 
 
@@ -60,32 +62,34 @@ loans1 <- lending_club_loans %>%
 
 
 ```{r}
-loansgeo <- lending_club_loans %>%
+loansgeo <- loans1 %>%
    select(loan_status, emp_length)
 ggplot(loansgeo)+
-  geom_bar(aes(x = emp_length), fill = "light blue")+
+  geom_bar(aes(x = emp_length))+ scale_fill_brewer(palette = "Dark2")+
   coord_flip()+
 labs( x= "Length of Employment",
         y= "Number of Loans",
-        title = "Lending Club Status of Loans Data")
+        title = "Lending Club Length of Employment")
 ```
-
-
 
 ```{r}
-loansgeo <- lending_club_loans %>%
-   select(loan_status, emp_length)%>%
-  summarise(total_count = n())%>%
-ggplot(aes(x = loan_status, y = total_count, fill = emp_length))+
-  geom_bar(stat = "identity" , position = "dodge") + 
-  scale_fill_brewer(palette="Dark2") + 
-  ylab("Total count") + xlab("Loan Status")+
-labs( x= "Loan Status",
-        y= "Number of Loans",
-        title = "Lending Club Status of Loans v Employment Years")
+
+ggplot(loans1)+
+  aes(x = emp_length, fill = loan_status)+
+     geom_bar()+
+    scale_fill_brewer(palette = "Dark2")+
+  coord_flip()+
+labs( x= "Length of Employment",
+        y= "Number of Loans status",
+        title = "Lending Club Length of Employment")
 ```
 
 
+
+ggplot(students) +
+  aes(x = school_year, fill = superpower) +
+  geom_bar() +
+  scale_fill_brewer(palette = "Dark2")
 
 
 #  View the structure of the data
@@ -152,7 +156,17 @@ loansdropped %>%
 
 ```{r}
   ggplot(loansdropped) +
-  geom_bar(aes(x= loan_status), fill = "light blue")+
+  aes(x = emp_length, fill = loan_status)+
+  geom_bar(aes(x= loan_status), fill = "dark blue")+
+labs( x= "Loan Status",
+        y= "Number of Loans",
+        title = "Lending Club Status of Loans Data")
+```
+
+```{r}
+ggplot(loansdropped) +
+  aes(x = term, fill = loan_status)+
+  geom_bar(aes(x= loan_status), fill = "dark blue")+
 labs( x= "Loan Status",
         y= "Number of Loans",
         title = "Lending Club Status of Loans Data")
@@ -161,8 +175,49 @@ labs( x= "Loan Status",
 
 
 
+```{r}
+ggplot(loansdropped)+
+  aes(x = emp_length, fill = loan_status)+
+     geom_bar()+
+    scale_fill_brewer(palette = "Dark2")+
+  coord_flip()+
+labs( x= "Length of Employment",
+        y= "Number of Loans status",
+        title = "Lending Club Length of Employment")
+```
 
+```{r}
+ggplot(loansdropped)+
+  aes(x = purpose, fill = loan_status)+
+     geom_bar()+
+    scale_fill_brewer(palette = "Dark2")+
+  coord_flip()+
+labs( x= "Purpose of the Loan",
+        y= "Number of Loans  and Status of Loan",
+        title = "Lending Club Purpose of Loan and Status")
+```
 
+```{r}
+ggplot(loansdropped)+
+  aes(x = sub_grade, fill = loan_status)+
+     geom_bar()+
+    scale_fill_brewer(palette = "Dark2")+
+  coord_flip()+
+labs( x= "Loan Grade",
+        y= "Number of Loans and Status of Loan",
+        title = "Lending Club Loan Grade and Status of Loan")
+```
+
+```{r}
+ggplot(loansdropped)+
+  aes(x = loan_amnt, fill = loan_status)+
+     geom_bar()+
+    scale_fill_brewer(palette = "Dark2")+
+  coord_flip()+
+labs( x= "Loan Grade",
+        y= "Number of Loans and Status of Loan",
+        title = "Lending Club Loan Grade and Status of Loan")
+```
 
 #  Key Take Aways
 
@@ -170,7 +225,7 @@ labs( x= "Loan Status",
 
 #### Majority of the loans are for 36 months (74%) and (26%) and for 60 months.
 
-#### The LC internal credit rating ranges from A to G with 5 subcategories (a total of 35 credit ratings). A1 being the least likely to default and G5 the catergory with the highest risk profile
+#### The LC internal credit rating ranges from A to G with 5 subcategories (a total of 35 credit ratings). A1 being the least likely to default and G5 the catergory with the highest risk profile.  From the data there is an uptick in the defaults at the D3 point onwards until we reach G5.
 
 #### Debt consolidation (19,776 loans) 46% of loans followed by paying off credit card debt (5,477) 13% and then other (4425) 10% are the top three purposes of the loan request. It should be noted that this is self reported and caution should be exercised when considering the validity of this information.
 
@@ -244,7 +299,7 @@ summary(default_arranged)
 
 ### Data set for default loans is 5,653 and on average the default amount is $12,134 - across the business this could be an estimated value of $68,593,502 so any reduction in the number of defaulting loans by say 1% could be $68,000 additional revenue.
 
-###(13% of the total loans made) - so a reduction in the defualts of even 1% (is across this data the average losses were $68m - this )
+
 
 
 ```{r}
@@ -256,32 +311,32 @@ labs( x= "Term of Loan",
 ```
 
 
-#### Loans with a longer term of 60 months make up a higher percentage of the defaults loans - we could conclude that the longer theterm the higher the exposure to changes in a persons financial status e.g employment or other personal circumstances. Historically, only the most financially secure individuals would be eligiable for a longer term loan.
+#### Loans with a longer term of 60 months make up a higher percentage of the defaults loans - we could conclude that the longer the term the higher the exposure to changes in a persons financial status e.g employment or other personal circumstances. Historically, only the most financially secure individuals would be eligiable for a longer term loan.
 
 #### For the purpose of this work the loan term could be considered a factor in the probability of a customer defaulting.
 
 
 ```{r}
 ggplot(default1) +
-  geom_bar(aes(x= loan_amnt), fill = "light blue")+
+  geom_bar(aes(x= loan_amnt), fill = "dark blue")+
   coord_flip()+
 labs( x= "Loan Amount",
         y= "Number of Default Loans",
         title = "Lending Club Default Loans Data")
 ```
-#### Here you can see four spikes in the data where there are more defaults on certain values of loans - $7,000, $18,000, $25,000 and then the max of $35,000 - the loan size could be considered a factor in the probabilty of a customer defaulting.
+#### Here you can see four spikes in the data where there are more defaults on certain values of loans - $7,000, $18,000, $25,000 and then the max of $35,000 - these loan size could be considered a factor in the probabilty of a customer defaulting and risk profile increased (e.g interest rates) increased at these particular values.
 
 
 
 ```{r}
 ggplot(default1) +
-  geom_bar(aes(x=home_ownership), fill = "light blue")+
+  geom_bar(aes(x=home_ownership), fill = "dark blue")+
    labs( x= "Houseing Status",
         y= "Number of Default Loans",
         title = "Lending Club Loans Data",
         subtitle = "Houseing Status")
 ```
-#### An applicants housing status can also be considerd a factor in Default loans also have a higher percentage of renters - unsurprising and also might be considered a higher risk when lending as a credit check cannot be secured from the other lender. Furthermore those with a mortage may be in a position to get a loans that are secured against their property. Housing status could be considered a factor in the probability of a customer defaulting.
+#### An applicants housing status can also be considerd a factor in default loans.  There is a a higher percentage of renters - unsurprising and also might be considered a higher risk when lending as a credit check cannot be secured from other traditional lender. Furthermore those with a mortage may be in a position to get a loan that is secured against their property. Housing status could be considered a factor in the probability of a customer defaulting.
 
 #### There is a slight increase in the number of people defaulting who are renters with 50% renting and 41% having a mortage.  For the purpose of the model home status could be consider a factor in the probabilty of a customer defaulting.
 
@@ -289,10 +344,6 @@ ggplot(default1) +
 default_dti <-default1 %>%
   select(dti, term)%>%
   arrange(desc(dti))
-
-
-
-
 
 ```
 
@@ -309,8 +360,6 @@ ggplot(default_dti) +
 
 
 
-
-
 ```{r}
 ggplot(default1) +
   geom_bar(aes(x=dti), fill = "light blue")+
@@ -323,12 +372,7 @@ ggplot(default1) +
 
 
 ```{r}
-ggplot(default1) +
-  geom_point(aes(x=dti, y= ), fill = "light blue")+
-   labs( x= "Debt to Income Ratio %",
-        y= "Number of Default Loans",
-        title = "Lending Club Loans Data",
-        subtitle = "DTI %")
+
 ```
 
 
@@ -344,7 +388,7 @@ ggplot(default1) +
 ```
 #### Debt consolidation, payment of credit card debts and "other" continue to be the top three reasons for a loan and for a customer then defaulting.  The purpose of a loan could be considered a factor in the chance of a customer defaulting and debt consolidation being a higher risk factor than for education or home improvements.
 
-#### Limiting exposure to the loans being used for this purpose may be a consideration in the future.
+#### Limiting exposure to the loans being used for this purpose may be a consideration in the future or offering a higher interest rate to mitiage the risk.
 
 
 
@@ -358,14 +402,6 @@ ggplot(default1) +
         subtitle = "Term & Purpose",
         fill = "Term")
 ```
-```{r}
-ggplot(default1)+
-  aes(loan_amnt, int_rate, colour = term)+
-  geom_point()
-  
-```
-XX rubbish plot - may chuck
-
 
 
   
@@ -384,9 +420,10 @@ ggplot(default1) +
 
 #loan status needs to be turned into a numerical column 0 or 1 for purpose of building a predictive model.
 
-#Our ultimate goal is the prediction of loan defaults from a given set of observations by selecting explanatory (independent) variables (also called feature in machine learning parlance) that result in an acceptable model performance as quantified by a pre-defined measure. This goal will also impact our exploratory data analysis. 
 
-`
+# Prediction of Loan Defaults
+
+#### Our ultimate goal is the prediction of loan defaults from a given set of observations by selecting explanatory (independent) variables (also called feature in machine learning) that result in an acceptable model performance as quantified by a pre-defined measure. This goal will also impact our exploratory data analysis. 
 
 
 
@@ -410,10 +447,6 @@ ggplot(loansmodelling,
         subtitle = "DTI %")
 ```
 
-```{r}
-
-```
-
 
 ```{r}
 glimpse(loansmodelling)
@@ -426,9 +459,6 @@ head(loansmodelling, 15)
 ```
 
 
-
-
-
 #   Machine Model ~ 1 Logistic Regression
 
 #### Predictive analysis using a machine learning model is an effective way of considering the relationships between a variable that may impact on a customer defaulting.
@@ -436,6 +466,10 @@ head(loansmodelling, 15)
 #### Now let's have a look at the relationships with loan status. I will split the variables into three sets, as the output of `ggpairs()` will be slow and cramped if we include all variables at once. Note that a disadvantage of this approach is that it will be difficult to visually assess relationships between some predictor pairs if they fall into different split sets.
 
 #### My ultimate goal is the prediction of loan defaults from a given set of observations by selecting explanatory (independent) variables (also called features in machine learning) that result in an acceptable model performance. This goal will also impact our exploratory data analysis. 
+
+#### the data has been split into two sets identifying loan amount, term and home ownership against the loan status.  The final set is annula income, the purpose of the loan and dti (debt to income ratio)
+
+#### GGpairs is then used to see the predictive relationships with the variables.
 
 
 
@@ -452,7 +486,7 @@ loans_split2 <- loansmodelling %>%
 
 #Now develop the connection with ggpairs
 
-```{r}
+```{r message=FALSE}
 library(GGally)
 ggpairs( loans_split1)
 ```
@@ -478,7 +512,7 @@ score_plot2
 ```
 
 
-```{r}
+```{r message=FALSE}
 library(GGally)
 ggpairs(loans_split2)
 ```
@@ -498,10 +532,9 @@ score_plot3
 loan_data_logreg_model <- glm(loan_status ~ dti+ loan_amnt+ term +log(annual_inc), data = loansmodelling, family = binomial(link = 'logit'))
 loan_data_logreg_model
 ```
-#higher the dti more likely to default, higher the term etc - all good predictors of the higher chance of defaulting.
+#### dti, loan amount and term are all good predictors of the higher chance of defaulting but annual income returns a negative and is not that strong a predictor.
 
-## But need to think carefully about the statistical significance of each predictor we ##add into the model. A good first step in this direction is to examine the p
-##-value of each predictor.
+#### But we need to think carefully about the statistical significance of each predictor. A good first step in this direction is to examine the p-value of each predictor.
 
 
 ```{r}
@@ -509,11 +542,12 @@ tidy_out <- clean_names(tidy(loan_data_logreg_model))
 tidy_out
 ```
 
-##from this we can see that dti, loan amount and term of the loan are statistically significant but the annual income is not.
+#### From this we can see that dti and loan amount continue to be strong strong but annual income not.  
 
 
+#   Recommendations
 
-
+#### 
 
 
 
